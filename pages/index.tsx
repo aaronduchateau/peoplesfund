@@ -2,10 +2,10 @@ import type { NextPage } from "next";
 import { SetStateAction, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-import Header from "../containers/Marketplace/components/Header";
+import HeaderContainer from "../containers/Marketplace/components/HeaderContainer";
 import Footer from "../containers/Marketplace/components/Footer";
 import HeroSection from "../containers/Marketplace/components/HeroSection";
-import Items from "../containers/Marketplace/components/Items";
+import FrontItems from "../containers/Marketplace/components/FrontItems";
 import BuyModal from "../containers/Marketplace/components/BuyModal";
 import MembershipTiers from "../containers/Marketplace/components/MembershipTiers";
 import { StoreThing } from "../containers/Marketplace/controllers/useMarketplaceController";
@@ -68,10 +68,10 @@ const Store: NextPage = () => {
  
 
   return (
-    <div className="flex flex-1 flex-col min-h-screen text-gray-500  bg-slate-900/90">
-      <Header />
+    <div className="flex flex-1 flex-col min-h-screen text-gray-500  bg-fmug">
+      <HeaderContainer />
       <div className="flex w-full">
-        <Items showModal={handleOpenTermsModal} showConversationModal={handleShowConversationModal} showDashboardModal={handleShowDashboardModal}/>
+        <FrontItems showModal={handleOpenTermsModal} showConversationModal={handleShowConversationModal} showDashboardModal={handleShowDashboardModal}/>
       </div>
       <div className="mx-4 md:mx-24 md:mt-4">
         {showTermsModal && <TermsOfService closeModal={handleCloseTermsModal} continuePurchase={handleOpenBuyModal} />}

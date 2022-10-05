@@ -1,25 +1,30 @@
 import { MbButton } from "mintbase-ui"
 import { useWallet } from "../../../services/providers/WalletProvider"
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Header = () => {
   const { isConnected, details, signIn, signOut } = useWallet()
 
   return (
-    <nav className="flex justify-between w-full bg-slate-900 sticky top-0 z-40 lg:border-b border-solid border-black/75">
-      <div className="flex justify-between items-center pt-4 sm:pt-0 pb-4 sm:pb-0">
-      <img src="logo-x.png" className="flex items-center sm:ml-5" style={{width: '30px'}} />
-        <h1 className="font-light text-2xl uppercase p-2 sm:p-4 border-gray-100 hidden sm:block">
-          SpaceRanch DAO
-        </h1>
-      </div>
-      {/** login/logout with wallet */}
-      <div className="flex items-center mr-2">
-        {isConnected && (
-          <MbButton onClick={signOut} label={`Sign Out ${details.accountId}`} />
-        )}
-        {!isConnected && (
-          <MbButton onClick={signIn} label="Connect NEAR Wallet" />
-        )}
+    <nav className="w-full sticky top-2 z-40 sticky pl-20 pr-20">
+      <div className="flex justify-between bg-slate-100 z-40 rounded-2xl lg:border-b border-solid border-black/75">
+        <div style={{color: "#02a95c"}} className="mt-3 ml-3 cursor-pointer">
+          <MenuIcon fontSize="large" color="inherit" />
+        </div>
+        <img src="fundmeup3.png" className="flex items-center mt-1" style={{width: '240px', height: '55px'}} />
+        <div style={{color: "#02a95c"}} className="mt-3 mr-3 cursor-pointer">
+          <AccountBalanceWalletIcon fontSize="large" color="inherit" />
+        </div>
+        {/** login/logout with wallet 
+        <div className="flex items-center mr-2">
+          {isConnected && (
+            <MbButton onClick={signOut} label={`Sign Out ${details.accountId}`} />
+          )}
+          {!isConnected && (
+            <MbButton onClick={signIn} label="Connect NEAR Wallet" />
+          )}
+        </div>*/}
       </div>
     </nav>
   )
