@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MbTab, MbMenuWrapper, MbDropdownMenu, MbIcon, EIconName } from "mintbase-ui";
 import { Item, LoadingItem } from "./Item";
-import HeroSection  from "./HeroSection";
+import HeroSection from "./HeroSection";
 import useStoreThingsController, { StoreThing } from "../controllers/useMarketplaceController";
 import useStoreController, { Store } from "../controllers/useStoresController";
 import { MbButton } from "mintbase-ui";
@@ -83,7 +83,7 @@ const sampleData = {
   }
 };
 
-const FrontItems = ({ showModal, showConversationModal, showDashboardModal }: { showModal: (item: StoreThing) => void, showConversationModal: () => void, showDashboardModal: () => void  }) => {
+const FrontItems = ({ showModal, showConversationModal, showDashboardModal }: { showModal: (item: StoreThing) => void, showConversationModal: () => void, showDashboardModal: () => void }) => {
   const [selectedTab, setSelectedTab] = useState('all');
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedStore, setSelectedStore] = useState('');
@@ -104,10 +104,10 @@ const FrontItems = ({ showModal, showConversationModal, showDashboardModal }: { 
     content: <span>All Stores</span>,
     onClick: () => setSelectedStore('')
   });
-  
+
   const scrollToPurchase = () => {
-    const section = document.querySelector( '#purchase-items' );
-    section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+    const section = document.querySelector('#purchase-items');
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const openInNewTab = (url: string) => {
@@ -125,7 +125,7 @@ const FrontItems = ({ showModal, showConversationModal, showDashboardModal }: { 
         <div onClick={() => setSelectedTab('all')}>
           <MbTab
             label={<span>All Items</span>}
-            isActive={selectedTab === 'all'} 
+            isActive={selectedTab === 'all'}
             isSmall
           />
         </div>
@@ -157,45 +157,50 @@ const FrontItems = ({ showModal, showConversationModal, showDashboardModal }: { 
           </div>
           <MbDropdownMenu
             items={storeTabs}
-            isOpen={menuOpen} 
-            className="mt-2" 
+            isOpen={menuOpen}
+            className="mt-2"
           />
         </MbMenuWrapper>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-4 my-12">
-        {sampleData.data.campaigns.map(function(object, i){
-          const styleFormatted = 'linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("' + object.photo + '")';
-          return <div className="bg-slate-100 rounded-xl shadow-lg relative overflow-hidden btn-shadow">
-                    <div className="hero-image-item rnd-shadow" style={{'backgroundImage': styleFormatted}}>
-                        <div className="p-4">
-                            <div className="text-xl text-white mt-1 font-bold">{object.title}</div>
-                            <div className="text-sm text-white mt-2">{object.descText}<br/><br/>{object.rewardText}</div>
-                        </div>
-                        <div className="prog-text-holder">  
-                            <span className="text-green text-4xl text-bold">${object.raisedAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>  
-                            <span className="text-sm text-light-green">&nbsp;of ${object.targetAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
-                        </div>
-                        <div className="line-holder">
-                            <BorderLinearProgress variant="determinate" value={parseInt(object.raisedAmount) / parseInt(object.targetAmount) * 100} color="success"/>
-                        </div>
-                      </div>
-                      <div className="flex items-center mt-3 justify-between p-4">
-                      <div className="text-center btn-green-border pt-2 pb-2 pl-5 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow">  
-                          <div className="justify-between">
-                            <SignalCellularAltIcon fontSize="medium" className="pb-1 text-green"/>
-                            <span className="text-green text-lg">
-                                &nbsp;Details</span>  
-                          </div>
-                        </div>
-                        <div className="text-center btn-green pt-2 pb-2 pl-8 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow">  
-                          <div className="justify-between">
-                            <ArrowUpwardIcon fontSize="medium" className="pb-1 text-white"/><span className="text-white text-lg">
-                                &nbsp;Fund</span>  
-                      </div>
-                    </div>
+      <div>
+        <div style={{ textAlign: 'center', width: '100%' }} className="my-6">
+          <img src="./featured.png" style={{ width: '400px', marginLeft: 'auto', marginRight: 'auto' }} />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-4 my-12">
+          {sampleData.data.campaigns.map(function (object, i) {
+            const styleFormatted = 'linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("' + object.photo + '")';
+            return <div className="bg-slate-100 rounded-xl shadow-lg relative overflow-hidden btn-shadow" key={i + 'frontItems'}>
+              <div className="hero-image-item rnd-shadow" style={{ 'backgroundImage': styleFormatted }}>
+                <div className="p-4">
+                  <div className="text-xl text-white mt-1 font-bold">{object.title}</div>
+                  <div className="text-sm text-white mt-2">{object.descText}<br /><br />{object.rewardText}</div>
+                </div>
+                <div className="prog-text-holder">
+                  <span className="text-green text-4xl text-bold">${object.raisedAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
+                  <span className="text-sm text-light-green">&nbsp;of ${object.targetAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
+                </div>
+                <div className="line-holder">
+                  <BorderLinearProgress variant="determinate" value={parseInt(object.raisedAmount) / parseInt(object.targetAmount) * 100} color="success" />
+                </div>
+              </div>
+              <div className="flex items-center mt-3 justify-between p-4">
+                <div className="text-center btn-green-border pt-2 pb-2 pl-5 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow">
+                  <div className="justify-between">
+                    <SignalCellularAltIcon fontSize="medium" className="pb-1 text-green" />
+                    <span className="text-green text-lg">
+                      &nbsp;Details</span>
                   </div>
-                </div>;
-        })}
+                </div>
+                <div className="text-center btn-green pt-2 pb-2 pl-8 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow">
+                  <div className="justify-between">
+                    <ArrowUpwardIcon fontSize="medium" className="pb-1 text-white" /><span className="text-white text-lg">
+                      &nbsp;Fund</span>
+                  </div>
+                </div>
+              </div>
+            </div>;
+          })}
+        </div>
       </div>
     </div>
   );

@@ -6,6 +6,12 @@ import HeaderContainer from "../containers/Marketplace/components/HeaderContaine
 import Footer from "../containers/Marketplace/components/Footer";
 import HeroSection from "../containers/Marketplace/components/HeroSection";
 import FrontItems from "../containers/Marketplace/components/FrontItems";
+import FundingStrategies from "../containers/Marketplace/components/FundingStrategies";
+import FundingExamples from "../containers/Marketplace/components/FundingExamples";
+
+import FinalStart from "../containers/Marketplace/components/FinalStart";
+
+import CampaignStrategies from "../containers/Marketplace/components/CampaignStrategies";
 import BuyModal from "../containers/Marketplace/components/BuyModal";
 import MembershipTiers from "../containers/Marketplace/components/MembershipTiers";
 import { StoreThing } from "../containers/Marketplace/controllers/useMarketplaceController";
@@ -73,6 +79,18 @@ const Store: NextPage = () => {
       <div className="flex w-full">
         <FrontItems showModal={handleOpenTermsModal} showConversationModal={handleShowConversationModal} showDashboardModal={handleShowDashboardModal}/>
       </div>
+      <div className="flex w-full" style={{background: '#02a95c'}}>
+        <CampaignStrategies showModal={handleOpenTermsModal} showConversationModal={handleShowConversationModal} showDashboardModal={handleShowDashboardModal}/>
+      </div>
+      <div className="flex w-full" style={{background: '#017A42'}}>
+        <FundingStrategies showModal={handleOpenTermsModal} showConversationModal={handleShowConversationModal} showDashboardModal={handleShowDashboardModal}/>
+      </div>
+      <div className="flex w-full" style={{background: '#02a95c'}}>
+        <FundingExamples showModal={handleOpenTermsModal} showConversationModal={handleShowConversationModal} showDashboardModal={handleShowDashboardModal}/>
+      </div>
+      <div className="flex w-full" style={{background: '#017A42'}}>
+        <FinalStart showModal={handleOpenTermsModal} showConversationModal={handleShowConversationModal} showDashboardModal={handleShowDashboardModal}/>
+      </div>
       <div className="mx-4 md:mx-24 md:mt-4">
         {showTermsModal && <TermsOfService closeModal={handleCloseTermsModal} continuePurchase={handleOpenBuyModal} />}
         {showBuyModal && <BuyModal closeModal={handleCloseBuyModal} item={selectedItem} />}
@@ -84,7 +102,7 @@ const Store: NextPage = () => {
           </NearWalletProvider>
         }
       </div>
-      <LoginFollowUP />
+  
       <Footer />
     </div>
   );
