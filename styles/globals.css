@@ -59,7 +59,7 @@ hr.style3 {
 
   .hero-image {
     /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../public/multicultural-row.webp");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../public/royalty-free-group.png");
   
     /* Set a specific height */
     height: 420px;
@@ -69,6 +69,10 @@ hr.style3 {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+  }
+
+  .hero-no-image {
+    height: 145px;
   }
 
   .hero-image-item {
@@ -151,4 +155,78 @@ hr.style3 {
   transition: 0.3s;
 }
 
+
+.sidenav {
+  height: 100%; 
+  width: 350px; 
+  position: fixed; 
+  z-index: 1; 
+  top: 0; 
+  left: -355px;
+  background-color: #111; 
+  overflow-x: hidden; 
+  padding-top: 60px; 
+  transition: 0.5s; 
+}
+
+.sideNavOpen {
+  left: 0;
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.loaderHolder {
+  background-color: #030c1d;
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  padding-top: 100px;
+}
+
+.loaderHolder img{
+ border-radius: 50%;
+}
+
+.bg-brt-green {
+  background-color: rgb(2,169,92);
+}
+
+
+
+.terms-of-use li{
+  padding: 5px;
+}
+
+.easy-to-read {
+  background-color: rgb(2,169,92);
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.terms-of-use .t-o-c li{
+  padding: 0px;
+}  
 
