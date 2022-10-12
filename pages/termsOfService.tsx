@@ -44,7 +44,7 @@ const termsOfService = () => {
                                             <b><a href="#section9">9. Intellectual Property owned by you</a></b>
                                         </li>
                                         <li className="type-16">
-                                            <b><a href="#section10">10. FundMeUP’s Intellectual Property</a></b>
+                                            <b><a href="#section10">10. FundMeUP's Intellectual Property</a></b>
                                         </li>
                                         <li className="type-16">
                                             <b><a href="#section11">11. Copyright Issues</a></b>
