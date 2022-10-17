@@ -1,11 +1,12 @@
 import 'react-slideshow-image/dist/styles.css';
 import { Zoom } from "react-slideshow-image";
+import Image from 'next/image'
 
 
-const images = ['./slides/s1.png','./slides/s2.png','./slides/s3.png','./slides/s4.png','./slides/s5.png','./slides/s6.png','./slides/s7.png','./slides/s8.png','./slides/s9.png','./slides/s10.png','./slides/s11.png','./slides/s12.png'];
+const images = ['/slides/s1.png','/slides/s2.png','/slides/s3.png','/slides/s4.png','/slides/s5.png','/slides/s6.png','/slides/s7.png','/slides/s8.png','/slides/s9.png','/slides/s10.png','/slides/s11.png','/slides/s12.png'];
 
   const zoomOutProperties = {
-    duration: 10000,
+    duration: 20000,
     transitionDuration: 500,
     infinite: true,
     indicators: true,
@@ -26,7 +27,9 @@ const pitch = () => {
                 <div className="slide-container w-4/5">
                     <Zoom {...zoomOutProperties}>
                         {images.map((each, index) => (
-                        <img key={index} style={{ width: "100%" }} src={each} />
+                        <Image key={index} width={1400}
+                        height={870}
+                        layout="responsive" src={each} />
                         ))}
                     </Zoom>
                 </div>
