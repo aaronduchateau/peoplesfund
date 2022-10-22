@@ -62,7 +62,9 @@ const CampaignOptions = ({ selectOption, selectedId, sampleData }: { selectOptio
         <div className='w-full ml-6 items-center mt-4 mr-6'>
             <div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-4 my-12">
-                    {sampleData.data.campaigns.map(function (object, i) {
+                    
+                    {// @ts-ignore
+                    sampleData.data.campaigns.map(function (object, i) {
                         const styleFormatted = 'linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("' + object.photo + '")';
                         return <div className="bg-slate-100 rounded-xl shadow-lg relative overflow-hidden btn-shadow" key={i + 'campaignStrats'}>
                             <div className="hero-image-item rnd-shadow" style={{ 'backgroundImage': styleFormatted }}>
