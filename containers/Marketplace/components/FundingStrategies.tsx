@@ -22,17 +22,27 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     },
 }));
 
+//{
+//    "id": "1",
+//    "title": "NFT funding",
+//    "descText": "Ex: Tom makes the most amazing cowboy boots. He knows exactly what it costs to make a pair and what his margin needs to be to make a profit. Tom chooses this option, and creates a tokenized NFT (50 units) at $200 each. His campaign is approved and is listed on our platform.",
+//    "rewardText": "Details: Tom will use our campaign builder to create his campaign, which (behind the scenes) will leverage the Mintbase API to list his redeemable NFT's on Near.",
+//    "fee": "5%",
+//    "chain": "NEAR",
+//    "photo": "./mintbase.webp"
+//},
+
 const sampleData = {
     "data": {
         "campaigns": [
             {
                 "id": "1",
-                "title": "NFT funding",
+                "title": "Creator Item Funding",
                 "descText": "Ex: Tom makes the most amazing cowboy boots. He knows exactly what it costs to make a pair and what his margin needs to be to make a profit. Tom chooses this option, and creates a tokenized NFT (50 units) at $200 each. His campaign is approved and is listed on our platform.",
                 "rewardText": "Details: Tom will use our campaign builder to create his campaign, which (behind the scenes) will leverage the Mintbase API to list his redeemable NFT's on Near.",
                 "fee": "5%",
                 "chain": "NEAR",
-                "photo": "./mintbase.webp"
+                "photo": "./starburst.jpeg"
             },
             {
                 "id": "2",
@@ -45,7 +55,7 @@ const sampleData = {
             },
             {
                 "id": "3",
-                "title": "Goal Distribution",
+                "title": "Milestone Funding",
                 "descText": "Ex: Sarah wants to raise money to finish her nursing degree, but her funders and herself want accountablity for the funds. Each time Sarah completes a term with passing grades she checks in with her funder(s), and funding for the subsequent term is released. Her campaign is approved and is listed on our platform.",
                 "rewardText": "Details: If Sarah fails to meet her minimum G.P.A. requirements, the contract refunds the subsequent funding to her sponsers.",
                 "fee": "2.5%",

@@ -94,3 +94,45 @@ export interface SimpleSaleProps {
   tokenId?: string
   loading: boolean
 }
+
+export interface MilestoneDetail {
+  title?: string,
+  description?: string,
+  amount?: number,
+  dateTrig?: string
+};
+
+export interface MilestoneFunding {
+  title?: string,
+  description: string,
+  category?: number,
+  fundingType?: number,
+  startDate?: string,
+  totalAmount?: number,
+  milestoneDetails?: MilestoneDetail[],
+  imageUrl?: string,
+  walletAddress?: string
+}
+
+export interface CreatorItemFunding {
+  title?: string,
+  description?: string,
+  category?: number,
+  fundingType?: number,
+  totalAmount?: number,
+  startDate?: string,
+  numberOfItems?: number,
+  imageUrl?: string,
+  walletAddress?: string
+}
+
+export interface ProgressiveFunding {
+  title?: string,
+  description?: string,
+  category?: number,
+  fundingType?: number,
+  totalAmount?: number,
+  startDate?: string,
+  imageUrl?: string,
+  walletAddress?: string
+}

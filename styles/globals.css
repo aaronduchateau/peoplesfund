@@ -131,11 +131,24 @@ hr.style3 {
     width: 140px;
 }
 
+.btn-green-border-sm {
+  border: 4px solid rgb(2, 169, 92);
+  background: white;
+  width: 100px;
+}
+
 .btn-green {
   border: 4px solid rgb(2, 169, 92);
   background: rgb(2,169,92);
   width: 160px;
 }
+
+.btn-green[disabled] {
+  background: lightgrey;
+  border: 4px solid lightgrey;
+  cursor: default;
+}
+
 .btn-shadow {
   transition: 0.3s;
 }
@@ -229,4 +242,49 @@ hr.style3 {
 .terms-of-use .t-o-c li{
   padding: 0px;
 }  
+
+.cat-menu-holder {
+  padding-top: 45px;
+  padding-left: 0px;
+  color: rgb(2,169,92);
+}
+
+.cat-menu-holder span{
+  display: block;
+  margin-top: 10px;
+  padding-left: 10px;
+  cursor: pointer;
+  transition: .1s;
+  white-space: nowrap;
+}
+
+
+.cat-menu-holder .selected{
+  color: white;
+  border-left: 1px solid white;
+  font-stretch: expanded;
+  margin-left: 5px;
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+.form-container {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 40px;
+  margin: 40px;
+  text-align: center;
+}
+
+.img-drag-button {
+  width: 100%;
+  max-width: 600px;
+  min-width: 100%;
+  min-height: 300px;
+  border-radius: 8px;
+  background-color: rgb(2,169,92);
+  color: white;
+}
+
+
 

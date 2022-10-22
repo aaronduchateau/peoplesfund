@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { MbTab, MbMenuWrapper, MbDropdownMenu, MbIcon, EIconName } from "mintbase-ui";
-import { Item, LoadingItem } from "./Item";
-import HeroSection from "./HeroSection";
 import useStoreThingsController, { StoreThing } from "../controllers/useMarketplaceController";
 import useStoreController, { Store } from "../controllers/useStoresController";
-import { MbButton } from "mintbase-ui";
 import { styled } from '@mui/material/styles';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
@@ -27,7 +24,7 @@ const sampleData = {
         "campaigns": [
             {
                 "id": "1",
-                "title": "Small Business & Startups",
+                "title": "Creators & Startups",
                 "descText": "43% of small businesses surveyed believe that they have less than six months until a permanent shutdown is unavoidable. While mom and pop might not always be in focus, collectively small businesses are a powerful and influential piece of the economy. 99.9% of all businesses in the U.S. qualify as small businesses, collectively employing almost half of the nation’s workforce.",
                 "rewardText": "Have a cause that correlates to this category? choose this option to begin.",
                 "fee": "5%",
