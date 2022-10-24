@@ -104,7 +104,7 @@ const fundingModes = {
 
 
 
-const builder = () => {
+const Builder = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [campaignType, setCampaginType] = useState(null);
     const [fundingType, setFundingType] = useState(null);
@@ -171,4 +171,4 @@ const builder = () => {
     );
 };
 
-export default builder;
+export default Builder;
