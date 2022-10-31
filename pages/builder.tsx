@@ -2,6 +2,7 @@ import 'react-slideshow-image/dist/styles.css';
 import CampaignOptions from "../containers/Marketplace/components/CampaignOptions";
 import HeaderSecondaryContainer from "../containers/Marketplace/components/HeaderSecondaryContainer";
 import Amounts from "../containers/Marketplace/components/Amounts";
+import CampaignPreview from "../containers/Marketplace/components/CampaignPreview"
 import Footer from "../containers/Marketplace/components/Footer";
 import Check from '@mui/icons-material/Check';
 import { useState } from 'react';
@@ -163,7 +164,8 @@ const Builder = () => {
                 <div className="" style={{width: '80%'}}>    
                     {currentStep == 1 && <CampaignOptions selectOption={selectCampaignType} selectedId={null} sampleData={campaignTypes} />}
                     {currentStep == 2 && <CampaignOptions selectOption={selectFundingType} selectedId={null} sampleData={fundingModes} />}
-                    {currentStep == 3 && <Amounts typeId={fundingType} goBack={setCurrentStep} />}
+                    {currentStep == 3 && <Amounts typeId={fundingType} setCurrentStep={setCurrentStep} />}
+                    {currentStep == 4 && <CampaignPreview typeId={fundingType} setCurrentStep={setCurrentStep} />}
                 </div>
             </div>
             <Footer />

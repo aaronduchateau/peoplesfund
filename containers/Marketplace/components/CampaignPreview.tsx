@@ -14,7 +14,7 @@ import { MilestoneFunding, MilestoneDetail, CreatorItemFunding, ProgressiveFundi
 import { Validate, ValidationGroup, useValidation, AutoDisabler } from 'mui-validate';
 
 
-const Amounts = ({typeId, setCurrentStep} : {typeId: number, setCurrentStep: (id: number) => void}) => {
+const CampaignPreview = ({typeId, setCurrentStep} : {typeId: number, setCurrentStep: (id: number) => void}) => {
       const dayJsObject = dayjs();
       const [dateValue, setDateValue] = React.useState<Dayjs | null>(
         dayJsObject,
@@ -335,4 +335,4 @@ const Amounts = ({typeId, setCurrentStep} : {typeId: number, setCurrentStep: (id
   )
 }
 
-export default Amounts;
+export default CampaignPreview;

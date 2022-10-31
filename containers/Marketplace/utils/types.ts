@@ -98,7 +98,7 @@ export interface SimpleSaleProps {
 export interface MilestoneDetail {
   title?: string,
   description?: string,
-  amount?: number,
+  amount?: string,
   dateTrig?: string
 };
 
