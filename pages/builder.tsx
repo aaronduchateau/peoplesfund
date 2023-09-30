@@ -7,60 +7,62 @@ import Footer from "../containers/Marketplace/components/Footer";
 import Check from '@mui/icons-material/Check';
 import { useState } from 'react';
 import { MilestoneFunding, MilestoneDetail, CreatorItemFunding, ProgressiveFunding } from '../utils/types';
+import PolygonMap from '../containers/Marketplace/components/PolygonMap';
+//import { CreatorItemFunding } from '../containers/Marketplace/utils/types';
 
 const campaignTypes = {
     "data": {
         "campaigns": [
             {
                 "id": "1",
-                "title": "Creators or Startups",
-                "descText": "43% of small businesses surveyed believe that they have less than six months until a permanent shutdown is unavoidable. While mom and pop might not always be in focus, collectively small businesses are a powerful and influential piece of the economy. 99.9% of all businesses in the U.S. qualify as small businesses, collectively employing almost half of the nation’s workforce.",
-                "rewardText": "Have a cause that correlates to this category? choose this option to begin.",
+                "title": "5 Year Contract",
+                "descText": "Choose this option if you own land and are willing to commit to the above stated tenure of tree preservation. By choosing this option you are seeking sponsorship and you agree to maintain forest & timber on your property for the above stated length of time. In the next steps we will help you identify your property on a map, which people can view and select for sponsorship!",
+                "rewardText": "Interested in the fine print of what a contract like this looks like? Click Ex: below.",
                 "fee": "5%",
                 "chain": "NEAR",
                 "photo": "./starburst.jpeg"
             },
             {
                 "id": "2",
-                "title": "Wellness Aid Humans",
-                "descText": "Recent polling indicates that traditional wellness campaigns in 2020 raised substantially less money in areas with more medical debt, higher uninsurance rates, and lower incomes. Whether your fundraising concerns extend to a loved one, a pet, or yourself, our goal is to use the power of Web3 to help you achieve your fundraising goals.",
-                "rewardText": "Have a cause that correlates to this category? choose this option to begin.",
+                "title": "10 Year Contract",
+                "descText": "Choose this option if you own land and are willing to commit to the above stated tenure of tree preservation. By choosing this option you are seeking sponsorship and you agree to maintain forest & timber on your property for the above stated length of time. In the next steps we will help you identify your property on a map, which people can view and select for sponsorship!",
+                "rewardText": "Interested in the fine print of what a contract like this looks like? Click Ex: below.",
                 "fee": "2.5%",
                 "chain": "NEAR & EVM",
                 "photo": "./starburst.jpeg"
             },
             {
                 "id": "3",
-                "title": "Wellness Aid Pets",
-                "descText": "Recent polling indicates that traditional wellness campaigns in 2020 raised substantially less money in areas with more medical debt, higher uninsurance rates, and lower incomes. Whether your fundraising concerns extend to a loved one, a pet, or yourself, our goal is to use the power of Web3 to help you achieve your fundraising goals.",
-                "rewardText": "Have a cause that correlates to this category? choose this option to begin.",
+                "title": "20 Year Contract",
+                "descText": "Choose this option if you own land and are willing to commit to the above stated tenure of tree preservation. By choosing this option you are seeking sponsorship and you agree to maintain forest & timber on your property for the above stated length of time. In the next steps we will help you identify your property on a map, which people can view and select for sponsorship!",
+                "rewardText": "Interested in the fine print of what a contract like this looks like? Click Ex: below.",
                 "fee": "2.5%",
                 "chain": "NEAR & EVM",
                 "photo": "./starburst.jpeg"
             },
             {
                 "id": "4",
-                "title": "Disaster Relief",
-                "descText": "In the two months following Hurricane Harvey, crowd funding funneled over $65 million to victims and charities. Millions more have been raised through hundreds of campaigns for people affected by Hurricane Maria. Campaigns of this type can focus on personal situations or broader goals, it's up to you!",
-                "rewardText": "Have a cause that correlates to this category? choose this option to begin.",
+                "title": "30 Year Contract",
+                "descText": "Choose this option if you own land and are willing to commit to the above stated tenure of tree preservation. By choosing this option you are seeking sponsorship and you agree to maintain forest & timber on your property for the above stated length of time. In the next steps we will help you identify your property on a map, which people can view and select for sponsorship!",
+                "rewardText": "Interested in the fine print of what a contract like this looks like? Click Ex: below.",
                 "fee": "2.5%",
                 "chain": "NEAR & EVM",
                 "photo": "./starburst.jpeg"
             },
             {
                 "id": "5",
-                "title": "Environmental Impact",
-                "descText": "Want to raise money to switch your house to Solar? Own a non-profit that cleans beaches or reduces trash going into our oceans? Want to fix that pesky pothole in 7th street that never seems to get fixed?",
-                "rewardText": "If you have a cause that correlates to this category? choose this option to begin.",
+                "title": "40 Year Contract",
+                "descText": "Choose this option if you own land and are willing to commit to the above stated tenure of tree preservation. By choosing this option you are seeking sponsorship and you agree to maintain forest & timber on your property for the above stated length of time. In the next steps we will help you identify your property on a map, which people can view and select for sponsorship!",
+                "rewardText": "Interested in the fine print of what a contract like this looks like? Click Ex: below.",
                 "fee": "2.5%",
                 "chain": "NEAR & EVM",
                 "photo": "./starburst.jpeg"
             },
             {
                 "id": "6",
-                "title": "Justice & Equality",
-                "descText": "We live in a world that is out of balance. For example: between February and April of 2020, Black business ownership declined more than 40%, the largest drop across any ethnic group. The report details the impact Covid-19 has had on Black-owned businesses. Black-owned businesses were less likely to handle mandated closures due to lack of access to financial relief.",
-                "rewardText": "Have a cause that correlates to this category? choose this option to begin.",
+                "title": "50 Year Contract",
+                "descText": "Choose this option if you own land and are willing to commit to the above stated tenure of tree preservation. By choosing this option you are seeking sponsorship and you agree to maintain forest & timber on your property for the above stated length of time. In the next steps we will help you identify your property on a map, which people can view and select for sponsorship!",
+                "rewardText": "Interested in the fine print of what a contract like this looks like? Click Ex: below.",
                 "fee": "2.5%",
                 "chain": "NEAR & EVM",
                 "photo": "./starburst.jpeg"
@@ -74,27 +76,27 @@ const fundingModes = {
         "campaigns": [
             {
                 "id": "1",
-                "title": "Creator Item Funding",
-                "descText": "Ex: Tom makes the most amazing cowboy boots. He knows exactly what it costs to make a pair and what his margin needs to be to make a profit. Tom chooses this option, and creates a tokenized NFT (50 units) at $200 each. His campaign is approved and is listed on our platform.",
-                "rewardText": "Details: Tom will use our campaign builder to create his campaign, which (behind the scenes) will leverage the Mintbase API to list his redeemable NFT's on Near.",
-                "fee": "5%",
-                "chain": "NEAR",
-                "photo": "./starburst.jpeg"
-            },
-            {
-                "id": "2",
                 "title": "Progressive Funding",
-                "descText": "Ex: Jane has outstanding medical bills due to an unexpected surgery, and is worried she will not be able to cover her mortgage (if she defaults on the $2,000 payment she will lose her home). Her campaign is approved and is listed on our platform.",
-                "rewardText": "Details: Jane is $2,000 short of her goal. Folks can contribute in whatever incriment they desire, and our smart contract will handle refunds if the goal is not met.",
+                "descText": "Select this option if you would like multiple contributors to donate towards your funding objective over the x123c.",
+                "rewardText": "This campaign mode is simliar to Go Fund Me. (**Recommended**)",
                 "fee": "2.5%",
                 "chain": "NEAR & EVM",
                 "photo": "./starburst.jpeg"
             },
             {
+                "id": "2",
+                "title": "Static Funding",
+                "descText": "Select this option if you would like to receive one lump sum from a single contributor to honor the x123c",
+                "rewardText": "",
+                "fee": "5%",
+                "chain": "NEAR",
+                "photo": "./starburst.jpeg"
+            },
+            {
                 "id": "3",
                 "title": "Milestone Funding",
-                "descText": "Ex: Sarah wants to raise money to finish her nursing degree, but her funders and herself want accountablity for the funds. Each time Sarah completes a term with passing grades she checks in with her funder(s), and funding for the subsequent term is released. Her campaign is approved and is listed on our platform.",
-                "rewardText": "Details: If Sarah fails to meet her minimum G.P.A. requirements, the contract refunds the subsequent funding to her sponsers.",
+                "descText": "Add specific amounts to raise at specific dates to honor the x123c",
+                "rewardText": "Each milestone will be treated as a unique contract, and can be satisfied by one contributor",
                 "fee": "2.5%",
                 "chain": "NEAR & EVM",
                 "photo": "./starburst.jpeg"
@@ -109,7 +111,9 @@ const Builder = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [campaignType, setCampaginType] = useState(null);
     const [fundingType, setFundingType] = useState(null);
-    const [creatorItemFunding, setCreatorItemFunding] = useState({});
+    const [drawnMapData, setDrawnMapData] = useState<Object | null>(null);
+    const [creatorItemFunding, setCreatorItemFunding] = useState<CreatorItemFunding | null>(null);
+    const [campaignImageURL, setCampaignImageURL] = useState<string>('');
 
     const selectCampaignType = (id: number)=>{
         setCampaginType(id);
@@ -121,6 +125,16 @@ const Builder = () => {
         setCurrentStep(3);
     }
 
+    const handleSetDrawnMapData = (data: Object) => {
+        setDrawnMapData(data);
+        setCurrentStep(4);
+    }
+
+    const handleSetPricingData= (data: CreatorItemFunding) => {
+        setCreatorItemFunding(data);
+        setCurrentStep(5);
+    }
+
     const getSelectedCampaignTitle = () =>{
         let arr = campaignTypes.data.campaigns;
         return arr.find(o => o.id === campaignType).title;
@@ -130,13 +144,19 @@ const Builder = () => {
         return arr.find(o => o.id === fundingType).title;
     }
 
+    const campaignImage = (image: any)=>{
+        setCampaignImageURL(image[0].dataURL);
+    }
+
     return (
         <div className="flex flex-1 flex-col min-h-screen text-gray-500  bg-fmug">
             <HeaderSecondaryContainer termsUrl="./builder.png" />
             <div className="bg-brt-green p-5 flex justify-center text-white">
-               {currentStep == 1 && 'Step 1: Choose your Category'}
-               {currentStep == 2 && 'Step 2: Choose your Funding Mode'}
-               {currentStep == 3 && 'Step 3: What are you trying to Raise?'}
+               {currentStep == 1 && 'Step 1: Choose your contract length'}
+               {currentStep == 2 && 'Step 2: Choose your Funding Type'}
+               {currentStep == 3 && 'Step 3: Draw the trees'}
+               {currentStep == 4 && 'Step 4: How much do you need?'}
+               {currentStep == 5 && 'Step 5: Review and finalize'}
             </div>
             <div className="flex">
                 <div style={{width: '15%'}}>
@@ -153,19 +173,41 @@ const Builder = () => {
                                 <Check fontSize="medium" className="pb-1 text-white" /> {getSelectedFundingTitle()}
                             </div>}
                         </span>
-                        <span className={currentStep == 3 ? 'selected' : undefined} onClick={()=>{setCurrentStep(fundingType ? 3: 2)}}>
-                            {null == null && '3) Choose Amounts'}
+                        <span className={currentStep == 3 ? 'selected' : undefined} onClick={()=>{setCurrentStep(3)}}>
+                            {drawnMapData == null && '3) Draw Boundries'}
+                            {drawnMapData != null && <div className="text-white">
+                                <Check fontSize="medium" className="pb-1 text-white" /> Draw Boundries
+                            </div>}
+                        </span>
+                        <span className={currentStep == 4 ? 'selected' : undefined} onClick={()=>{setCurrentStep(4)}}>
+                            {creatorItemFunding == null && '4) Funding Amounts'}
+                            {creatorItemFunding != null && <div className="text-white">
+                                <Check fontSize="medium" className="pb-1 text-white" /> Funding Amounts
+                            </div>}
+                        </span>
+                        <span className={currentStep == 5 ? 'selected' : undefined} onClick={()=>{setCurrentStep(5)}}>
+                            {null == null && '5) Review and Finalize'}
                             {'d' == null && <div className="text-white">
-                                <Check fontSize="medium" className="pb-1 text-white" /> $ Selected
+                                <Check fontSize="medium" className="pb-1 text-white" /> Review and Finalize
                             </div>}
                         </span>
                     </div>
                 </div>
                 <div className="" style={{width: '80%'}}>    
-                    {currentStep == 1 && <CampaignOptions selectOption={selectCampaignType} selectedId={null} sampleData={campaignTypes} />}
-                    {currentStep == 2 && <CampaignOptions selectOption={selectFundingType} selectedId={null} sampleData={fundingModes} />}
-                    {currentStep == 3 && <Amounts typeId={fundingType} setCurrentStep={setCurrentStep} />}
-                    {currentStep == 4 && <CampaignPreview typeId={fundingType} setCurrentStep={setCurrentStep} />}
+                    {currentStep == 1 && <CampaignOptions selectOption={selectCampaignType} replacementText={""} selectedId={null} sampleData={campaignTypes} />}
+                    {currentStep == 2 && <CampaignOptions selectOption={selectFundingType} replacementText={getSelectedCampaignTitle()} selectedId={null} sampleData={fundingModes} />}
+                    {currentStep == 3 && <PolygonMap setDrawnMapData={handleSetDrawnMapData}/>}
+                    {currentStep == 4 && <Amounts typeId={fundingType} setCurrentStep={setCurrentStep} handleSetPricingData={handleSetPricingData} campaignImage={campaignImage}/>}
+                    {currentStep == 5 && 
+                        <CampaignPreview 
+                            typeId={fundingType} 
+                            setCurrentStep={setCurrentStep}
+                            campaignType={campaignType} 
+                            fundingType={fundingType}
+                            drawnMapData={drawnMapData}
+                            creatorItemFunding={creatorItemFunding}
+                            campaignImageURL={campaignImageURL}
+                        />}
                 </div>
             </div>
             <Footer />

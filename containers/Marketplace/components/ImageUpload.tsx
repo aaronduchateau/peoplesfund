@@ -1,9 +1,9 @@
 import React from "react";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 
-const ImageUpload = () => {
+const ImageUpload = (props: {campaignImage: (campaignImage: any) => void}) => {
   const [images, setImages] = React.useState([]);
-  const maxNumber = 69;
+  const maxNumber = 1;
 
   const onChange = (
     imageList: ImageListType,
@@ -11,6 +11,7 @@ const ImageUpload = () => {
   ) => {
     // data for submit
     console.log(imageList, addUpdateIndex);
+    props.campaignImage(imageList);
     setImages(imageList as never[]);
   };
 
@@ -53,7 +54,8 @@ const ImageUpload = () => {
                     className="img-drag-button"
                     {...dragProps}
                 >
-                Click or Drop here
+                Add Campaign Photo <br />
+                <span style={{fontSize: '10px'}}>(Click or Drop Files Here)</span>
                 </button>
             </div>  
           </div>

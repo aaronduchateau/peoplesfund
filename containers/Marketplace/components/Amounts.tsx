@@ -14,7 +14,7 @@ import { MilestoneFunding, MilestoneDetail, CreatorItemFunding, ProgressiveFundi
 import { Validate, ValidationGroup, useValidation, AutoDisabler } from 'mui-validate';
 
 
-const Amounts = ({typeId, setCurrentStep} : {typeId: number, setCurrentStep: (id: number) => void}) => {
+const Amounts = ({typeId, setCurrentStep, handleSetPricingData, campaignImage} : {typeId: number, setCurrentStep: (id: number) => void, handleSetPricingData: (data: CreatorItemFunding) => void, campaignImage: (campaignImage: any) => void} ) => {
       const dayJsObject = dayjs();
       const [dateValue, setDateValue] = React.useState<Dayjs | null>(
         dayJsObject,
@@ -30,7 +30,6 @@ const Amounts = ({typeId, setCurrentStep} : {typeId: number, setCurrentStep: (id
         startDate: dayJsObject.toISOString(),
         numberOfItems: null,
         imageUrl: '',
-        walletAddress: ''
       });
 
       const [progressiveValues, setProgressiveValues] = React.useState<ProgressiveFunding>({
@@ -41,7 +40,6 @@ const Amounts = ({typeId, setCurrentStep} : {typeId: number, setCurrentStep: (id
         totalAmount: null,
         startDate: dayJsObject.toISOString(),
         imageUrl: '',
-        walletAddress: ''
       });
 
       const [milestoneValues, setMilestoneValues] = React.useState<MilestoneFunding>({
@@ -53,7 +51,6 @@ const Amounts = ({typeId, setCurrentStep} : {typeId: number, setCurrentStep: (id
         totalAmount: null,
         milestoneDetails: [],
         imageUrl: '',
-        walletAddress: ''
       });
     
       const handleDateChange = (newValue: Dayjs | null) => {
@@ -177,53 +174,69 @@ const Amounts = ({typeId, setCurrentStep} : {typeId: number, setCurrentStep: (id
         {typeId == 1 && 
             <ValidationGroup>
                 <Stack spacing={3}>
-                    <h2>Creator Item Funding:</h2> 
-                    <h2>How much will each item cost?</h2>    
-                        <Validate name="creator-1" regex={/^\d{0,5}$/} required>
+                    <ImageUpload campaignImage={campaignImage}/>
+                    <br />
+                    <h2 style={{textAlign: 'left', lineHeight: '0px'}}>Give your campaign a title</h2>    
+                        <Validate name="creator-1" required>
                             <TextField 
                                 id="outlined-basic" 
-                                label="$ amount to raise" 
+                                label="Ex: Historic trees in local nieghborhood in jeapordy " 
+                               
+                                inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}  
+                                type="text"
+                                onChange={handleCreatorChange}
+                                name="title"
+                                sx={{mt: -.3, mb: 2}}
+                                />
+                        </Validate>
+                    <h2 style={{textAlign: 'left', lineHeight: '0px'}}>Give your Campaign a funding Goal</h2>    
+                        <Validate name="creator-1" regex={/^\d{0,9}$/} required>
+                            <TextField 
+                                id="outlined-basic" 
+                                label="Ex: $888,888" 
                                 variant="outlined" color="success" 
                                 inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}  
                                 type="number"
                                 onChange={handleCreatorChange}
                                 name="totalAmount"
+                                sx={{mt: -.3, mb: 2}}
                                 />
                         </Validate>
-                    <h2>How many items will you make?</h2>  
-                        <Validate name="creator-2" regex={/^\d{0,2}$/} required>
+                    <h2 style={{textAlign: 'left', lineHeight: '0px'}}>Describe why your trees matter</h2>  
+                        <Validate name="creator-2" required>
                             <TextField 
                                 id="outlined-basic" 
-                                label="# of items" 
+                                label="Campaign Description" 
                                 variant="outlined" 
                                 color="success" 
-                                inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}  
-                                type="number"
+                                type="text"
                                 onChange={handleCreatorChange}
-                                name="numberOfItems"
+                                name="description"
+                                rows={4}
+                                multiline
+                                sx={{mt: -.8, mb: 2}}
                                 />
                         </Validate>
-                    <h2>When will the campaign go live?</h2>   
+                    <h2 style={{textAlign: 'left', lineHeight: '0px'}}>Pick a campaign start date</h2>   
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DateTimePicker
                             label="Date&Time picker"
                             value={dateValue}
                             onChange={handleDateChange}
-                            renderInput={(params: any) => <TextField {...params} />}
+                            renderInput={(params: any) => <TextField {...params}
+                            sx={{mt: -.8, mb: 2}} />}
                         />
                     </LocalizationProvider>
-                    <h2>Want to add a picture?</h2>    
-                    <ImageUpload />
                     <div className="grid justify-items-center ">
                         <div className="flex space-x-2">
-                            <div className="text-center btn-green pt-2 pb-2 pl-5 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{setCurrentStep(2)}}>
+                            <div className="text-center btn-green pt-2 pb-2 pl-5 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{setCurrentStep(3)}}>
                                 <div className="justify-between">
                                     <ArrowBack fontSize="medium" className="pb-1 text-white" /><span className="text-white text-lg">
                                     &nbsp;Go Back</span>
                                 </div>
                             </div>
                             <AutoDisabler>
-                                <div className="text-center btn-green pt-2 pb-2 pl-4 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{setCurrentStep(4)}}>
+                                <div className="text-center btn-green pt-2 pb-2 pl-4 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{handleSetPricingData(creatorValues)}}>
                                     <div className="justify-between">
                                         <Check fontSize="medium" className="pb-1 text-white" /><span className="text-white text-lg">
                                         &nbsp;Continue</span>
@@ -261,7 +274,7 @@ const Amounts = ({typeId, setCurrentStep} : {typeId: number, setCurrentStep: (id
                         />
                     </LocalizationProvider>
                     <h2>Want to add a picture?</h2>    
-                    <ImageUpload />
+                    <ImageUpload campaignImage={campaignImage}/>
                     <div className="grid justify-items-center ">
                         <div className="flex space-x-2">
                             <div className="text-center btn-green pt-2 pb-2 pl-5 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{setCurrentStep(2)}}>
@@ -311,16 +324,16 @@ const Amounts = ({typeId, setCurrentStep} : {typeId: number, setCurrentStep: (id
                     </div>
                     <hr />
                     <h2>Want to add a picture?</h2>    
-                    <ImageUpload />
+                    <ImageUpload campaignImage={campaignImage}/>
                     <div className="grid justify-items-center ">
                         <div className="flex space-x-2">
-                            <div className="text-center btn-green pt-2 pb-2 pl-5 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{setCurrentStep(2)}}>
+                            <div className="text-center btn-green pt-2 pb-2 pl-5 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{setCurrentStep(4)}}>
                                 <div className="justify-between">
                                     <ArrowBack fontSize="medium" className="pb-1 text-white" /><span className="text-white text-lg">
                                     &nbsp;Go Back</span>
                                 </div>
                             </div>
-                                <div className="text-center btn-green pt-2 pb-2 pl-4 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{setCurrentStep(4)}}>
+                                <div className="text-center btn-green pt-2 pb-2 pl-4 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{handleSetPricingData(creatorValues)}}>
                                     <div className="justify-between">
                                         <Check fontSize="medium" className="pb-1 text-white" /><span className="text-white text-lg">
                                         &nbsp;Continue</span>

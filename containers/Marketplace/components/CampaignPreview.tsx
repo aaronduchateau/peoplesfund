@@ -12,14 +12,21 @@ import OppositeContentTimeline from "./OppositeContentTimeline";
 import MilestoneAmounts from "./MilestoneAmounts";
 import { MilestoneFunding, MilestoneDetail, CreatorItemFunding, ProgressiveFunding } from '../utils/types';
 import { Validate, ValidationGroup, useValidation, AutoDisabler } from 'mui-validate';
+import area from '@turf/area';
+import moment from 'moment';
 
 
-const CampaignPreview = ({typeId, setCurrentStep} : {typeId: number, setCurrentStep: (id: number) => void}) => {
+const CampaignPreview = ({typeId, setCurrentStep, fundingType, drawnMapData, creatorItemFunding, campaignImageURL} : {typeId: number, setCurrentStep: (id: number) => void, fundingType: any, drawnMapData: any, creatorItemFunding: any, campaignImageURL: any}) => {
+   
+      console.log('drawnMapData');  
+      console.log(drawnMapData);
       const dayJsObject = dayjs();
       const [dateValue, setDateValue] = React.useState<Dayjs | null>(
         dayJsObject,
       );
       const [editModeIndex, setEditModeIndex] = React.useState(null);
+
+      
 
       const [creatorValues, setCreatorValues] = React.useState<CreatorItemFunding>({
         title: '',
@@ -86,6 +93,14 @@ const CampaignPreview = ({typeId, setCurrentStep} : {typeId: number, setCurrentS
           [event.target.name]: event.target.value,
         });
       };
+
+      const handleCreatorImageUrl = (url: string) => {
+        setCreatorValues({
+          ...creatorValues,
+          imageUrl: url
+        });
+      };
+
 
       console.log(creatorValues);
 
@@ -172,11 +187,60 @@ const CampaignPreview = ({typeId, setCurrentStep} : {typeId: number, setCurrentS
             [event.target.name]: event.target.value,
         });
       };
+
+      const calculateAreaOfProperty = (features: any) => {
+        let polygons = Object.values(features);
+        let polygonArea = area(polygons[0]);
+       
+        return Math.round(Math.round(polygonArea * 100) / 100);
+      }
+
+      const calculateAreaOfTrees = (features: any) => {
+        let polygons = Object.values(features);
+        polygons.shift();
+        let polygonArea = 0;
+        for (const polygon of polygons) {
+            polygonArea += area(polygon);
+        }
+        return Math.round(Math.round(polygonArea * 100) / 100);
+      }
+
+      const calculateTreeDensity = (features: any) => {
+        const property = calculateAreaOfProperty(features);
+        const trees = calculateAreaOfTrees(features);
+        const treePercentage = Math.round((trees / property) * 100);
+        return treePercentage;
+      }
+      const calculateTonsOfCarbon = (features: any) => {
+        const trees = calculateAreaOfTrees(features);
+        const carbonInTons = Math.round((trees / 4047) * 20);
+        return carbonInTons;
+      }
   return (
     <div className="form-container">
         {typeId == 1 && 
             <ValidationGroup>
                 <Stack spacing={3}>
+                <h1 style={{textAlign: 'left'}}>{creatorItemFunding.title}</h1>    
+                    <div className="grid justify-items-center ">
+                        <div className="grid grid-cols-2 gap-4">
+                            <img src={campaignImageURL} style={{objectFit: 'cover', width: '100%', height: '100%'}} />
+                            <div>
+                                <h2 style={{textAlign: 'left', fontSize: '14px', color: '#f8f7f7'}}>Funding Goal: ${creatorItemFunding.totalAmount}</h2>
+                                <h2 style={{textAlign: 'left', fontSize: '14px', color: '#f8f7f7'}}>Start Date: {moment(creatorItemFunding.startDate).format('MM.DD.YYYY')}</h2>
+                                <h2 style={{textAlign: 'left', fontSize: '14px', color: '#f8f7f7'}}>Property: {calculateAreaOfProperty(drawnMapData.features)} (Sq M)</h2>
+                                <h2 style={{textAlign: 'left', fontSize: '14px', color: '#f8f7f7'}}>Trees: {calculateAreaOfTrees(drawnMapData.features)} (Sq M)</h2>
+                                <h2 style={{textAlign: 'left', fontSize: '14px', color: '#f8f7f7'}}>Tree Density: {calculateTreeDensity(drawnMapData.features)}%</h2>
+                                <h2 style={{textAlign: 'left', fontSize: '14px', color: '#f8f7f7'}}>Tree Density: {calculateTonsOfCarbon(drawnMapData.features)} Tons Carbon / yr</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="grid justify-items-center ">
+                        <div className="grid grid-cols-2 gap-4">
+                            <div><h2 style={{textAlign: 'left', fontSize: '14px', color: '#f8f7f7'}}>{creatorItemFunding.description}</h2></div>
+                            <img src={drawnMapData.imageUrlEncoded} style={{objectFit: 'cover', width: '100%', height: '100%'}} />
+                        </div>
+                    </div>
                     <h2>Creator Item Funding:</h2> 
                     <h2>How much will each item cost?</h2>    
                         <Validate name="creator-1" regex={/^\d{0,5}$/} required>
@@ -212,8 +276,8 @@ const CampaignPreview = ({typeId, setCurrentStep} : {typeId: number, setCurrentS
                             renderInput={(params: any) => <TextField {...params} />}
                         />
                     </LocalizationProvider>
-                    <h2>Want to add a picture?</h2>    
-                    <ImageUpload />
+                   
+                
                     <div className="grid justify-items-center ">
                         <div className="flex space-x-2">
                             <div className="text-center btn-green pt-2 pb-2 pl-5 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{setCurrentStep(2)}}>

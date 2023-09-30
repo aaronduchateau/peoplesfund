@@ -22,7 +22,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 
 
 
-const CampaignOptions = ({ selectOption, selectedId, sampleData }: { selectOption: (id: number) => void, selectedId: number, sampleData: AnyKindOfDictionary}, ) => {
+const CampaignOptions = ({ selectOption, selectedId, sampleData, replacementText }: { selectOption: (id: number) => void, selectedId: number, sampleData: AnyKindOfDictionary, replacementText: string}, ) => {
     const [selectedTab, setSelectedTab] = useState('all');
     const [menuOpen, setMenuOpen] = useState(false);
     const [selectedStore, setSelectedStore] = useState('');
@@ -70,7 +70,7 @@ const CampaignOptions = ({ selectOption, selectedId, sampleData }: { selectOptio
                             <div className="hero-image-item rnd-shadow" style={{ 'backgroundImage': styleFormatted }}>
                                 <div className="p-4">
                                     <div className="text-xl text-white mt-1 font-bold">{object.title}</div>
-                                    <div className="text-sm text-white mt-2">{object.descText}<br /><br />{object.rewardText}</div>
+                                    <div className="text-sm text-white mt-2">{object.descText.replace("x123c", replacementText)}<br /><br />{object.rewardText}</div>
                                 </div>
                             </div>
                             <div className="flex items-center mt-3 justify-between p-4">
