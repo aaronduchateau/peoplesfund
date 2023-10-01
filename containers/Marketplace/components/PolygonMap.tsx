@@ -8,12 +8,11 @@ import Map, {
 } from 'react-map-gl';
 
 import DrawControl from './DrawControl';
-import ControlPanel from './ControlPanel';
 import GeocoderControl from './GeocoderControl';
 import bbox from '@turf/bbox';
 import InstructionsMapOne from './InstructionsMapOne';
 import InstructionsMapTwo from './InstructionsMapTwo';
-import { Check } from '@mui/icons-material';
+import { ArrowBack, Check } from '@mui/icons-material';
 
 
 const TOKEN = 'pk.eyJ1IjoiYWR1Y2hhdGUiLCJhIjoibWlwdzdCWSJ9.r3Fu1PMbaQ7qxSCA5GBwlA'; // Set your mapbox token here
@@ -93,14 +92,16 @@ export default function PolygonMap(props: {setDrawnMapData: (mapParms: Object) =
     });
   }, []);
 
+  const isContinueEnabled: boolean = (Object.keys(features).length > 1);
+
   return (
-    <>
+    <div className="form-container">
     <div id="map">
       <Map
         initialViewState={{
-          longitude: -91.874,
-          latitude: 42.76,
-          zoom: 12
+          longitude: -118.006004,
+          latitude: 34.316662,
+          zoom: 16
         }}
         mapStyle="mapbox://styles/mapbox/satellite-v9"
         mapboxAccessToken={TOKEN}
@@ -122,23 +123,28 @@ export default function PolygonMap(props: {setDrawnMapData: (mapParms: Object) =
         <GeolocateControl position="top-left" />
         <FullscreenControl position="top-left" />
         <NavigationControl position="top-left" />
-        {Object.keys(features).length > 1 && 
-        <div 
-          className="text-center btn-green btn-map cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" 
-          onClick={handleExportData}>
-          <div className="justify-between">
-            <Check fontSize="medium" className="pb-1 text-white" /><span className="text-white text-lg">
-            &nbsp;Go to Next Step</span>
-            </div>
-        </div>}
       </Map>
-      <ControlPanel polygons={Object.values(features)} />
     </div>
-    <span onClick={handleExportData}>Next Step</span>
+    <br/><br/>
     <InstructionsMapOne isOpen={isInstructinsOneOpen} handleToggle={handleToggle}/>
     <InstructionsMapTwo isOpen={isInstructinsTwoOpen} handleToggle={handleToggleTwo}/>
-    <img src={base64ImageExport} />
-    </>
+    <div className="grid justify-items-center ">
+                        <div className="flex space-x-2">
+                            <div className="text-center btn-green pt-2 pb-2 pl-5 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{setCurrentStep(4)}}>
+                                <div className="justify-between">
+                                    <ArrowBack fontSize="medium" className="pb-1 text-white" /><span className="text-white text-lg">
+                                    &nbsp;Go Back</span>
+                                </div>
+                            </div>
+                                <button className="text-center btn-green pt-2 pb-2 pl-4 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{ isContinueEnabled && handleExportData() }} disabled={!isContinueEnabled}>
+                                    <div className="justify-between">
+                                        <Check fontSize="medium" className="pb-1 text-white" /><span className="text-white text-lg">
+                                        &nbsp;Continue</span>
+                                    </div>
+                                </button>
+                        </div>
+                    </div>
+    </div>
   );
 }
 

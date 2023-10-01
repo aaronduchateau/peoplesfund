@@ -1,7 +1,7 @@
 import { MbButton } from "mintbase-ui"
 import { useWallet } from "../../../services/providers/WalletProvider"
 import { useMenu } from "../../../services/providers/MenuProvider";
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import UserIcon from '@mui/icons-material/SupervisedUserCircleOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 import SlideMenu from "./SlideMenu";
 
@@ -18,7 +18,7 @@ const Header = () => {
         </div>
         <img src="fundmeup3.png" className="flex items-center mt-1 w-40 h-9 md:w-60 md:h-14 " />
         <div style={{color: "#02a95c"}} className="mt-1 mr-3 md:mt-3 md:mr-3 cursor-pointer" onClick={()=>toggleOpen(!isOpen)}>
-          <AccountBalanceWalletIcon fontSize="large" color="inherit" />
+          <UserIcon fontSize="large" color="inherit" />
         </div>
         {/** login/logout with wallet 
         <div className="flex items-center mr-2">

@@ -14,19 +14,22 @@ import { MilestoneFunding, MilestoneDetail, CreatorItemFunding, ProgressiveFundi
 import { Validate, ValidationGroup, useValidation, AutoDisabler } from 'mui-validate';
 
 
-const Amounts = ({typeId, setCurrentStep, handleSetPricingData, campaignImage} : {typeId: number, setCurrentStep: (id: number) => void, handleSetPricingData: (data: CreatorItemFunding) => void, campaignImage: (campaignImage: any) => void} ) => {
+const Amounts = ({typeId, setCurrentStep, handleSetPricingData, campaignImage, creatorItemFunding} : {typeId: number, setCurrentStep: (id: number) => void, handleSetPricingData: (data: CreatorItemFunding) => void, campaignImage: (campaignImage: any) => void, creatorItemFunding: any} ) => {
       const dayJsObject = dayjs();
       const [dateValue, setDateValue] = React.useState<Dayjs | null>(
         dayJsObject,
       );
       const [editModeIndex, setEditModeIndex] = React.useState(null);
 
-      const [creatorValues, setCreatorValues] = React.useState<CreatorItemFunding>({
+      console.log('what in the jesus');
+      console.log(creatorItemFunding);
+
+      const [creatorValues, setCreatorValues] = React.useState<CreatorItemFunding>(creatorItemFunding ? creatorItemFunding : {
         title: '',
         description: '',
         category: null,
         fundingType: null,
-        totalAmount: null,
+        totalAmount: 0,
         startDate: dayJsObject.toISOString(),
         numberOfItems: null,
         imageUrl: '',
@@ -172,16 +175,16 @@ const Amounts = ({typeId, setCurrentStep, handleSetPricingData, campaignImage} :
   return (
     <div className="form-container">
         {typeId == 1 && 
-            <ValidationGroup>
+            <ValidationGroup initialValidation={'silent'}>
                 <Stack spacing={3}>
                     <ImageUpload campaignImage={campaignImage}/>
                     <br />
                     <h2 style={{textAlign: 'left', lineHeight: '0px'}}>Give your campaign a title</h2>    
-                        <Validate name="creator-1" required>
+                        <Validate name="creator-111" required>
                             <TextField 
                                 id="outlined-basic" 
                                 label="Ex: Historic trees in local nieghborhood in jeapordy " 
-                               
+                                value={creatorValues.title}
                                 inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}  
                                 type="text"
                                 onChange={handleCreatorChange}
@@ -190,11 +193,12 @@ const Amounts = ({typeId, setCurrentStep, handleSetPricingData, campaignImage} :
                                 />
                         </Validate>
                     <h2 style={{textAlign: 'left', lineHeight: '0px'}}>Give your Campaign a funding Goal</h2>    
-                        <Validate name="creator-1" regex={/^\d{0,9}$/} required>
+                        <Validate name="creator-222" regex={/^\d{0,9}$/} required initialValidation='silent'>
                             <TextField 
                                 id="outlined-basic" 
                                 label="Ex: $888,888" 
-                                variant="outlined" color="success" 
+                                variant="outlined"
+                                value={creatorValues.totalAmount}
                                 inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}  
                                 type="number"
                                 onChange={handleCreatorChange}
@@ -203,12 +207,12 @@ const Amounts = ({typeId, setCurrentStep, handleSetPricingData, campaignImage} :
                                 />
                         </Validate>
                     <h2 style={{textAlign: 'left', lineHeight: '0px'}}>Describe why your trees matter</h2>  
-                        <Validate name="creator-2" required>
+                        <Validate name="creator-333" required>
                             <TextField 
                                 id="outlined-basic" 
                                 label="Campaign Description" 
                                 variant="outlined" 
-                                color="success" 
+                                value={creatorValues.description}
                                 type="text"
                                 onChange={handleCreatorChange}
                                 name="description"
@@ -221,7 +225,7 @@ const Amounts = ({typeId, setCurrentStep, handleSetPricingData, campaignImage} :
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DateTimePicker
                             label="Date&Time picker"
-                            value={dateValue}
+                            value={creatorValues.startDate || dateValue}
                             onChange={handleDateChange}
                             renderInput={(params: any) => <TextField {...params}
                             sx={{mt: -.8, mb: 2}} />}
@@ -229,14 +233,14 @@ const Amounts = ({typeId, setCurrentStep, handleSetPricingData, campaignImage} :
                     </LocalizationProvider>
                     <div className="grid justify-items-center ">
                         <div className="flex space-x-2">
-                            <div className="text-center btn-green pt-2 pb-2 pl-5 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{setCurrentStep(3)}}>
+                            <div className="text-center btn-green pt-2 pb-2 pl-5 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{setCurrentStep(1)}}>
                                 <div className="justify-between">
                                     <ArrowBack fontSize="medium" className="pb-1 text-white" /><span className="text-white text-lg">
                                     &nbsp;Go Back</span>
                                 </div>
                             </div>
                             <AutoDisabler>
-                                <div className="text-center btn-green pt-2 pb-2 pl-4 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{handleSetPricingData(creatorValues)}}>
+                                <div className="text-center btn-green pt-2 pb-2 pl-4 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{handleSetPricingData(creatorValues);setCurrentStep(3)}}>
                                     <div className="justify-between">
                                         <Check fontSize="medium" className="pb-1 text-white" /><span className="text-white text-lg">
                                         &nbsp;Continue</span>

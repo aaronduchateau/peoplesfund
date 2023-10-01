@@ -59,7 +59,7 @@ hr.style3 {
 
   .hero-image {
     /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../public/royalty-free-group.webp");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, .3)), url("https://www.cbc.ca/natureofthings/content/legacy/talktalk_1920.jpg");
   
     /* Set a specific height */
     height: 420px;
@@ -286,7 +286,7 @@ hr.style3 {
   min-width: 100%;
   min-height: 300px;
   border-radius: 8px;
-  background-color: rgb(2,169,92);
+  background-color: #040d13;
   color: white;
 }
 

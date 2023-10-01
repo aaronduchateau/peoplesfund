@@ -10,8 +10,9 @@ const HeaderContainer = () => {
     <div className="hero-image">
         <Header />
         <div className="hero-text">
-            <h1>Funding for Human Beings,</h1>
-            <p>Built with NEAR Protocal.</p>
+            <h1>Get Paid to Keep Trees</h1>
+            <p>that you already own,</p>
+            <p>& save our planet.</p>
             <div style={{color: "#02a95c"}} className="mt-3 p-3 pl-4 cursor-pointer  bg-slate-100 z-40 rounded-2xl btn-shadow">
                 <AutoGraphIcon />
                 <span className="p-3 text-lg">Start Your First Campaign</span>

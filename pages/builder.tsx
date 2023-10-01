@@ -8,6 +8,7 @@ import Check from '@mui/icons-material/Check';
 import { useState } from 'react';
 import { MilestoneFunding, MilestoneDetail, CreatorItemFunding, ProgressiveFunding } from '../utils/types';
 import PolygonMap from '../containers/Marketplace/components/PolygonMap';
+import CampaignOptionsContract from '../containers/Marketplace/components/CampaignOptionsContract';
 //import { CreatorItemFunding } from '../containers/Marketplace/utils/types';
 
 const campaignTypes = {
@@ -110,7 +111,7 @@ const fundingModes = {
 const Builder = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [campaignType, setCampaginType] = useState(null);
-    const [fundingType, setFundingType] = useState(null);
+    const [fundingType, setFundingType] = useState("1");
     const [drawnMapData, setDrawnMapData] = useState<Object | null>(null);
     const [creatorItemFunding, setCreatorItemFunding] = useState<CreatorItemFunding | null>(null);
     const [campaignImageURL, setCampaignImageURL] = useState<string>('');
@@ -132,7 +133,6 @@ const Builder = () => {
 
     const handleSetPricingData= (data: CreatorItemFunding) => {
         setCreatorItemFunding(data);
-        setCurrentStep(5);
     }
 
     const getSelectedCampaignTitle = () =>{
@@ -149,28 +149,27 @@ const Builder = () => {
     }
 
     return (
-        <div className="flex flex-1 flex-col min-h-screen text-gray-500  bg-fmug">
+        <div className="flex flex-1 flex-col min-h-screen text-gray-500  bg-fmug" >
             <HeaderSecondaryContainer termsUrl="./builder.png" />
-            <div className="bg-brt-green p-5 flex justify-center text-white">
+            <div className="bg-brt-green p-5 flex justify-center text-white" style={{marginTop: '-13px', zIndex: 0}}>
                {currentStep == 1 && 'Step 1: Choose your contract length'}
-               {currentStep == 2 && 'Step 2: Choose your Funding Type'}
+               {currentStep == 2 && 'Step 2: How much do you need?'}
                {currentStep == 3 && 'Step 3: Draw the trees'}
-               {currentStep == 4 && 'Step 4: How much do you need?'}
-               {currentStep == 5 && 'Step 5: Review and finalize'}
+               {currentStep == 4 && 'Step 4: Review and finalize'}
             </div>
             <div className="flex">
-                <div style={{width: '15%'}}>
-                    <div className="cat-menu-holder">
+                <div style={{width: '20%', margin: '0 auto', display: "flex", justifyContent: "center"}}>
+                    <div className="cat-menu-holder" style={{textAlign: 'left'}}>
                         <span className={currentStep == 1 ? 'selected' : undefined} onClick={()=>{setCurrentStep(1)}}>
-                            {campaignType == null && '1) Choose Category'}
+                            {campaignType == null && '1) Choose Contract'}
                             {campaignType != null && <div className="text-white text-sm">
                                 <Check fontSize="medium" className="pb-1 text-white" /> {getSelectedCampaignTitle()}
                             </div>}
                         </span>
                         <span className={currentStep == 2 ? 'selected' : undefined} onClick={()=>{setCurrentStep(2)}}>
-                            {fundingType == null && '2) Choose Funding'}
-                            {fundingType != null && <div className="text-white text-sm">
-                                <Check fontSize="medium" className="pb-1 text-white" /> {getSelectedFundingTitle()}
+                        {creatorItemFunding == null && '2) Funding Amounts'}
+                            {creatorItemFunding != null && <div className="text-white">
+                                <Check fontSize="medium" className="pb-1 text-white" /> Funding Amounts
                             </div>}
                         </span>
                         <span className={currentStep == 3 ? 'selected' : undefined} onClick={()=>{setCurrentStep(3)}}>
@@ -180,13 +179,7 @@ const Builder = () => {
                             </div>}
                         </span>
                         <span className={currentStep == 4 ? 'selected' : undefined} onClick={()=>{setCurrentStep(4)}}>
-                            {creatorItemFunding == null && '4) Funding Amounts'}
-                            {creatorItemFunding != null && <div className="text-white">
-                                <Check fontSize="medium" className="pb-1 text-white" /> Funding Amounts
-                            </div>}
-                        </span>
-                        <span className={currentStep == 5 ? 'selected' : undefined} onClick={()=>{setCurrentStep(5)}}>
-                            {null == null && '5) Review and Finalize'}
+                            {null == null && '4) Review and Finalize'}
                             {'d' == null && <div className="text-white">
                                 <Check fontSize="medium" className="pb-1 text-white" /> Review and Finalize
                             </div>}
@@ -194,11 +187,10 @@ const Builder = () => {
                     </div>
                 </div>
                 <div className="" style={{width: '80%'}}>    
-                    {currentStep == 1 && <CampaignOptions selectOption={selectCampaignType} replacementText={""} selectedId={null} sampleData={campaignTypes} />}
-                    {currentStep == 2 && <CampaignOptions selectOption={selectFundingType} replacementText={getSelectedCampaignTitle()} selectedId={null} sampleData={fundingModes} />}
+                    {currentStep == 1 && <CampaignOptionsContract selectOption={selectCampaignType} replacementText={""} selectedId={campaignType} sampleData={campaignTypes} />}
+                    {currentStep == 2 && <Amounts typeId={fundingType} setCurrentStep={setCurrentStep} handleSetPricingData={handleSetPricingData} campaignImage={campaignImage} creatorItemFunding={creatorItemFunding}/>}
                     {currentStep == 3 && <PolygonMap setDrawnMapData={handleSetDrawnMapData}/>}
-                    {currentStep == 4 && <Amounts typeId={fundingType} setCurrentStep={setCurrentStep} handleSetPricingData={handleSetPricingData} campaignImage={campaignImage}/>}
-                    {currentStep == 5 && 
+                    {currentStep == 4 && 
                         <CampaignPreview 
                             typeId={fundingType} 
                             setCurrentStep={setCurrentStep}

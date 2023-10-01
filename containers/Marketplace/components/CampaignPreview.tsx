@@ -14,12 +14,13 @@ import { MilestoneFunding, MilestoneDetail, CreatorItemFunding, ProgressiveFundi
 import { Validate, ValidationGroup, useValidation, AutoDisabler } from 'mui-validate';
 import area from '@turf/area';
 import moment from 'moment';
+import { Divider } from '@mui/material';
 
 
 const CampaignPreview = ({typeId, setCurrentStep, fundingType, drawnMapData, creatorItemFunding, campaignImageURL} : {typeId: number, setCurrentStep: (id: number) => void, fundingType: any, drawnMapData: any, creatorItemFunding: any, campaignImageURL: any}) => {
    
       console.log('drawnMapData');  
-      console.log(drawnMapData);
+      console.log(drawnMapData.location);
       const dayJsObject = dayjs();
       const [dateValue, setDateValue] = React.useState<Dayjs | null>(
         dayJsObject,
@@ -221,24 +222,55 @@ const CampaignPreview = ({typeId, setCurrentStep, fundingType, drawnMapData, cre
         {typeId == 1 && 
             <ValidationGroup>
                 <Stack spacing={3}>
-                <h1 style={{textAlign: 'left'}}>{creatorItemFunding.title}</h1>    
+                <h1 style={{textAlign: 'left', display: 'inline', borderRadius: "16px", backgroundColor: "#040d13", padding: "16px"}}><span style={{borderRadius: "16px", backgroundColor: "#2ba95c", padding: "8px"}}>${creatorItemFunding.totalAmount}</span>&nbsp;&nbsp;&nbsp;<span>{creatorItemFunding.title}</span></h1>    
                     <div className="grid justify-items-center ">
                         <div className="grid grid-cols-2 gap-4">
-                            <img src={campaignImageURL} style={{objectFit: 'cover', width: '100%', height: '100%'}} />
-                            <div>
-                                <h2 style={{textAlign: 'left', fontSize: '14px', color: '#f8f7f7'}}>Funding Goal: ${creatorItemFunding.totalAmount}</h2>
-                                <h2 style={{textAlign: 'left', fontSize: '14px', color: '#f8f7f7'}}>Start Date: {moment(creatorItemFunding.startDate).format('MM.DD.YYYY')}</h2>
-                                <h2 style={{textAlign: 'left', fontSize: '14px', color: '#f8f7f7'}}>Property: {calculateAreaOfProperty(drawnMapData.features)} (Sq M)</h2>
-                                <h2 style={{textAlign: 'left', fontSize: '14px', color: '#f8f7f7'}}>Trees: {calculateAreaOfTrees(drawnMapData.features)} (Sq M)</h2>
-                                <h2 style={{textAlign: 'left', fontSize: '14px', color: '#f8f7f7'}}>Tree Density: {calculateTreeDensity(drawnMapData.features)}%</h2>
-                                <h2 style={{textAlign: 'left', fontSize: '14px', color: '#f8f7f7'}}>Tree Density: {calculateTonsOfCarbon(drawnMapData.features)} Tons Carbon / yr</h2>
+                            <div style={{borderRadius: "16px", backgroundColor: "#040d13", padding: "16px"}}>
+                            <h1 style={{color: '#f8f7f7 ', textAlign:'center'}}>Campaign Saves <span style={{color: '#2ba95c'}}>{calculateTonsOfCarbon(drawnMapData.features)}</span> <span style={{fontSize: '14px'}}>(Tons Carbon/yr)</span></h1>
+<Divider />
+<span style={{fontSize: '14px'}}>{drawnMapData.location?.result?.place_name}</span>
+<div style={{padding: '16px'}}>
+                            <div className="grid justify-items-left">
+                               
+                        <div className="grid grid-cols-2 gap-8">
+                                <div>
+                                <h2 style={{textAlign: 'left', fontSize: '14px',  color: '#7c8187'}}>Start Date:</h2>
+                                <h1 style={{color: '#f8f7f7 ', textAlign:'left'}}>{moment(creatorItemFunding.startDate).format('MM.DD.YYYY')}</h1>
+                                </div>
+                                <div>
+                                <h2 style={{textAlign: 'left', fontSize: '14px',  color: '#7c8187'}}>Property:</h2>
+                                <h1 style={{color: '#f8f7f7 ', textAlign:'left'}}>{calculateAreaOfProperty(drawnMapData.features)} <span style={{fontSize: '14px'}}>(Sq M)</span></h1>
+                                </div>
+                                </div>
+                                </div>
+
+
+                                <div className="grid justify-items-left ">
+                        <div className="grid grid-cols-2 gap-8">
+                        <div>
+                                <h2 style={{textAlign: 'left', fontSize: '14px',  color: '#7c8187'}}>Trees:</h2>
+                                <h1 style={{color: '#f8f7f7 ', textAlign:'left'}}>{calculateAreaOfTrees(drawnMapData.features)} <span style={{fontSize: '14px'}}>(Sq M)</span></h1>
+                                </div>
+                                <div>
+                                <h2 style={{textAlign: 'left', fontSize: '14px',  color: '#7c8187'}}>Tree Density:</h2>
+                                <h1 style={{color: '#f8f7f7 ', textAlign:'left'}}>{calculateTreeDensity(drawnMapData.features)}<span style={{fontSize: '14px'}}>%</span></h1>
+                                </div>
+                                </div>
+                                </div>                                
                             </div>
+                            </div>
+
+
+                            <img src={campaignImageURL} style={{objectFit: 'cover', width: '100%', height: '100%'}} />
+
                         </div>
+                        
                     </div>
                     <div className="grid justify-items-center ">
                         <div className="grid grid-cols-2 gap-4">
-                            <div><h2 style={{textAlign: 'left', fontSize: '14px', color: '#f8f7f7'}}>{creatorItemFunding.description}</h2></div>
                             <img src={drawnMapData.imageUrlEncoded} style={{objectFit: 'cover', width: '100%', height: '100%'}} />
+
+                            <div><h2 style={{textAlign: 'left', fontSize: '14px', color: '#f8f7f7'}}>{creatorItemFunding.description}</h2></div>
                         </div>
                     </div>
                     <h2>Creator Item Funding:</h2> 

@@ -7,7 +7,7 @@ const HeaderSecondaryContainer = ({termsUrl} : {termsUrl: string}) => {
   const { isConnected, details, signIn, signOut } = useWallet()
 
   return (
-    <div className="hero-no-image pb-3">
+    <div className="hero-no-image pb-3" style={{zIndex: 2}}>
         <Header />
         <img src={termsUrl} style={{ width: '400px', marginLeft: 'auto', marginRight: 'auto', marginTop: '30px' }}/>
     </div>
