@@ -10,11 +10,21 @@ import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+
+  '& MuiDialogContainer-root': {
+    backgroundColor: '#081620',
+    padding: theme.spacing(2),
+  },
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
+    backgroundColor: '#081620',
   },
   '& .MuiDialogActions-root': {
     padding: theme.spacing(1),
+    backgroundColor: '#081620',
+  },
+  '& .MuiDialogTitle-root': {
+    backgroundColor: '#081620',
   },
 }));
 
@@ -27,7 +37,7 @@ export default function InstructionsMapOne(props: {isOpen: boolean, handleToggle
         aria-labelledby="customized-dialog-title"
         open={props.isOpen}
       >
-        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+        <DialogTitle sx={{ m: 0, p: 2, }} id="customized-dialog-title">
           Draw Property Bounds
         </DialogTitle>
         <IconButton
@@ -42,7 +52,7 @@ export default function InstructionsMapOne(props: {isOpen: boolean, handleToggle
         >
           <CloseIcon />
         </IconButton>
-        <DialogContent dividers>
+        <DialogContent dividers sx={{borderBottom: '1px solid #081620', borderTop: '1px solid #081620'}} >
        
           {currentStep === 1 && <><Typography gutterBottom>
             In this step you will: 

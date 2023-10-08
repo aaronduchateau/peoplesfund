@@ -1,13 +1,11 @@
-import { MbButton } from "mintbase-ui"
-import { useWallet } from "../../../services/providers/WalletProvider"
 import { useMenu } from "../../../services/providers/MenuProvider";
 import UserIcon from '@mui/icons-material/SupervisedUserCircleOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 import SlideMenu from "./SlideMenu";
 
 const Header = () => {
-  const { isConnected, details, signIn, signOut } = useWallet()
-  const {toggleOpen, isOpen} = useMenu()
+ 
+  const {toggleOpen, isOpen} = useMenu();
 
   return (
     <nav className="w-full sticky top-2 z-40 sticky pl-10 pr-10 md:pl-20 md:pr-20">

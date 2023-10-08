@@ -1,9 +1,8 @@
 import { MbText } from "mintbase-ui";
 import Markdown from 'markdown-to-jsx';
-import { useWallet } from "../../../services/providers/NearWalletProvider"
 
 const MembershipTiers = () => {
-    const { wallet, signIn, signOut, addMember } = useWallet()
+   
   return (
       <div className="md:mx-24 mt-4">
         <div className="">

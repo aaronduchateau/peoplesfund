@@ -1,22 +1,10 @@
-import { MbText, MbInfoCard, MbAmountInput, MbButton, EState, ESize } from 'mintbase-ui';
-import { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form'
-import { useLazyQuery } from '@apollo/client'
-
-import { StoreThing } from "../controllers/useMarketplaceController";
-import { GET_THING, GET_TOKEN_LIST, useListThingController } from '../controllers/useThingController';
-import { bigToNear, nearToYocto } from '../../../lib/numbers'
-import { TransactionEnum } from '../utils/types'
-import { useWallet } from "../../../services/providers/WalletProvider"
 
 
-
-const TermsOfService = ({ closeModal, continuePurchase }: { closeModal: () => void, continuePurchase: () => void}) => {
-    const [showContinueButton, setShowContinueButton] = useState(false);
+const TermsOfService = () => {
     const handleScroll = (e: any) => {
         const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
         if (bottom) {
-            setShowContinueButton(true);
+            //setShowContinueButton(true);
         }
     }
   return (
@@ -192,9 +180,7 @@ const TermsOfService = ({ closeModal, continuePurchase }: { closeModal: () => vo
                     </p>
                 </div>
                 <br/>
-                <div className='text-right'>
-                    <MbButton onClick={()=>{showContinueButton && continuePurchase()}} label="Accept and Continue"  state={showContinueButton ? EState.ACTIVE : EState.DISABLED}/>
-                </div>
+              
             </div>
           </div>
         </div>

@@ -147,6 +147,15 @@ const Builder = () => {
     const campaignImage = (image: any)=>{
         setCampaignImageURL(image[0].dataURL);
     }
+    console.log('drawnMapData');
+    console.log(JSON.stringify(drawnMapData));
+    console.log('creatorItemFunding');
+    console.log(JSON.stringify(creatorItemFunding));
+    console.log('campaignImageURL');
+    console.log(JSON.stringify(campaignImageURL));
+    console.log('contractName');
+    //console.log(JSON.stringify(getSelectedCampaignTitle()));
+
 
     return (
         <div className="flex flex-1 flex-col min-h-screen text-gray-500  bg-fmug" >
@@ -188,17 +197,16 @@ const Builder = () => {
                 </div>
                 <div className="" style={{width: '80%'}}>    
                     {currentStep == 1 && <CampaignOptionsContract selectOption={selectCampaignType} replacementText={""} selectedId={campaignType} sampleData={campaignTypes} />}
-                    {currentStep == 2 && <Amounts typeId={fundingType} setCurrentStep={setCurrentStep} handleSetPricingData={handleSetPricingData} campaignImage={campaignImage} creatorItemFunding={creatorItemFunding}/>}
+                    {currentStep == 2 && <Amounts typeId={fundingType} setCurrentStep={setCurrentStep} handleSetPricingData={handleSetPricingData} campaignImage={campaignImage} creatorItemFunding={creatorItemFunding} getSelectedCampaignTitle={getSelectedCampaignTitle()}/>}
                     {currentStep == 3 && <PolygonMap setDrawnMapData={handleSetDrawnMapData}/>}
                     {currentStep == 4 && 
                         <CampaignPreview 
-                            typeId={fundingType} 
                             setCurrentStep={setCurrentStep}
-                            campaignType={campaignType} 
-                            fundingType={fundingType}
                             drawnMapData={drawnMapData}
                             creatorItemFunding={creatorItemFunding}
                             campaignImageURL={campaignImageURL}
+                            contractName={getSelectedCampaignTitle()}
+                            mode="BUILDER"
                         />}
                 </div>
             </div>

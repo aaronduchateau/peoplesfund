@@ -2,9 +2,8 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from 'next/head'
 import { Chain, Network } from 'mintbase'
-import { ApolloProvider } from "@apollo/client";
+
 import { getClient } from "../services/providers/apollo";
-import { WalletProvider } from "../services/providers/WalletProvider";
 import { MenuProvider } from "../services/providers/MenuProvider";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -38,12 +37,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const mjsKey = process.env.NEXT_PUBLIC_MBJS_KEY || "";
   return (
     <ThemeProvider theme={darkTheme}>
-    <WalletProvider
-      network={Network.testnet as Network}
-      chain={Chain.near as Chain}
-      apiKey={mjsKey}
-    >
-      <ApolloProvider client={getClient({ network: Network.testnet })}>
         <MenuProvider>
         <Head>
           <title>Tree Builder</title>
@@ -53,8 +46,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         </Head>
           {loading ? (<Component {...pageProps} />) : <PageLoader />}
         </MenuProvider>
-      </ApolloProvider>
-    </WalletProvider>
     </ThemeProvider>
   );
 }
