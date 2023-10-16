@@ -57,7 +57,7 @@ const FinalStart = () => {
             <div>
                 <div style={{ textAlign: 'center', width: '100%' }} className="my-6">
                     <img src="./ready.png" style={{ width: '400px', marginLeft: 'auto', marginRight: 'auto' }} />
-                    <div className="text-white mx-auto" style={{ width: '400px'}}>Do you have a specific funding need that might be a good candidate for funding on NEAR? <br/><br/>Our campaing builder makes it easy for you to get started, and will walk you through each step of creating the perfect campaign today.<br/><br/>
+                    <div className="text-white mx-auto" style={{ width: '400px'}}>Do you have trees that are in jeapordy of being cut down if funding isn't secured?<br/><br/>Our campaing builder makes it easy to identify your tree's and calculate the Carbon offset of the trees you own.<br/><br/>
                     <Link href="./builder">
                         <div className="text-center btn-green pt-2 pb-2 pl-4 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow mx-auto" style={{width: '300px'}}>
                             <div className="justify-between">

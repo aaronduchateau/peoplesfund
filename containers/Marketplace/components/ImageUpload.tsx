@@ -1,9 +1,15 @@
 import React from "react";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 
-const ImageUpload = (props: {campaignImage: (campaignImage: any) => void}) => {
+const ImageUpload = (props: {setImage: (setImage: any) => void, image: any}) => {
   const [images, setImages] = React.useState([]);
   const maxNumber = 1;
+
+  React.useEffect(() => {
+    if(Object.keys(props.image).length > 0){
+      setImages([props.image]);
+    }
+  }, []);
 
   const onChange = (
     imageList: ImageListType,
@@ -11,7 +17,7 @@ const ImageUpload = (props: {campaignImage: (campaignImage: any) => void}) => {
   ) => {
     // data for submit
     console.log(imageList, addUpdateIndex);
-    props.campaignImage(imageList);
+    props.setImage(imageList);
     setImages(imageList as never[]);
   };
 

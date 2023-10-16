@@ -46,7 +46,7 @@ export default function CampaignViewerModal(props: {isOpen: number | null, handl
         maxWidth='lg'
       >
         <DialogTitle sx={{ m: 0, p: 2, }} id="customized-dialog-title">
-          Campaign Preview
+         
         </DialogTitle>
         <IconButton
           aria-label="close"

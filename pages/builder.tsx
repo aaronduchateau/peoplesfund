@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { MilestoneFunding, MilestoneDetail, CreatorItemFunding, ProgressiveFunding } from '../utils/types';
 import PolygonMap from '../containers/Marketplace/components/PolygonMap';
 import CampaignOptionsContract from '../containers/Marketplace/components/CampaignOptionsContract';
+import React from 'react';
 //import { CreatorItemFunding } from '../containers/Marketplace/utils/types';
 
 const campaignTypes = {
@@ -114,14 +115,21 @@ const Builder = () => {
     const [fundingType, setFundingType] = useState("1");
     const [drawnMapData, setDrawnMapData] = useState<Object | null>(null);
     const [creatorItemFunding, setCreatorItemFunding] = useState<CreatorItemFunding | null>(null);
-    const [campaignImageURL, setCampaignImageURL] = useState<string>('');
+    const [campaignImageURL, setCampaignImageURL] = useState<any>({});
 
-    const selectCampaignType = (id: number)=>{
+    React.useEffect(() => {
+        setTimeout(() => {
+            const section = document.querySelector('#section-title-builder');
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+    }, [currentStep]);
+
+    const selectCampaignType = (id: number) => {
         setCampaginType(id);
         setCurrentStep(2);
     }
 
-    const selectFundingType = (id: number)=>{
+    const selectFundingType = (id: number) => {
         setFundingType(id);
         setCurrentStep(3);
     }
@@ -131,26 +139,26 @@ const Builder = () => {
         setCurrentStep(4);
     }
 
-    const handleSetPricingData= (data: CreatorItemFunding) => {
+    const handleSetPricingData = (data: CreatorItemFunding) => {
         setCreatorItemFunding(data);
     }
 
-    const getSelectedCampaignTitle = () =>{
+    const getSelectedCampaignTitle = () => {
         let arr = campaignTypes.data.campaigns;
         return arr.find(o => o.id === campaignType).title;
     }
-    const getSelectedFundingTitle = () =>{
+    const getSelectedFundingTitle = () => {
         let arr = fundingModes.data.campaigns;
         return arr.find(o => o.id === fundingType).title;
     }
 
-    const campaignImage = (image: any)=>{
-        setCampaignImageURL(image[0].dataURL);
+    const setCampaignImage = (image: any) => {
+        setCampaignImageURL(image[0]);
     }
-    console.log('drawnMapData');
-    console.log(JSON.stringify(drawnMapData));
-    console.log('creatorItemFunding');
-    console.log(JSON.stringify(creatorItemFunding));
+    //console.log('drawnMapData');
+    //console.log(JSON.stringify(drawnMapData));
+    //console.log('creatorItemFunding');
+    //console.log(JSON.stringify(creatorItemFunding));
     console.log('campaignImageURL');
     console.log(JSON.stringify(campaignImageURL));
     console.log('contractName');
@@ -158,36 +166,36 @@ const Builder = () => {
 
 
     return (
-        <div className="flex flex-1 flex-col min-h-screen text-gray-500  bg-fmug" >
+        <div className="flex flex-1 flex-col min-h-screen text-gray-500  bg-fmug" id="section-title-builder">
             <HeaderSecondaryContainer termsUrl="./builder.png" />
-            <div className="bg-brt-green p-5 flex justify-center text-white" style={{marginTop: '-13px', zIndex: 0}}>
-               {currentStep == 1 && 'Step 1: Choose your contract length'}
-               {currentStep == 2 && 'Step 2: How much do you need?'}
-               {currentStep == 3 && 'Step 3: Draw the trees'}
-               {currentStep == 4 && 'Step 4: Review and finalize'}
+            <div className="bg-brt-green p-5 flex justify-center text-white" style={{ marginTop: '-13px', zIndex: 0 }}>
+                {currentStep == 1 && 'Step 1: Choose your contract length'}
+                {currentStep == 2 && 'Step 2: How much do you need?'}
+                {currentStep == 3 && 'Step 3: Draw the trees'}
+                {currentStep == 4 && 'Step 4: Review and finalize'}
             </div>
             <div className="flex">
-                <div style={{width: '20%', margin: '0 auto', display: "flex", justifyContent: "center"}}>
-                    <div className="cat-menu-holder" style={{textAlign: 'left'}}>
-                        <span className={currentStep == 1 ? 'selected' : undefined} onClick={()=>{setCurrentStep(1)}}>
+                <div style={{ width: '20%', margin: '0 auto', display: "flex", justifyContent: "center" }}>
+                    <div className="cat-menu-holder" style={{ textAlign: 'left' }}>
+                        <span className={currentStep == 1 ? 'selected' : undefined} onClick={() => { setCurrentStep(1) }}>
                             {campaignType == null && '1) Choose Contract'}
                             {campaignType != null && <div className="text-white text-sm">
                                 <Check fontSize="medium" className="pb-1 text-white" /> {getSelectedCampaignTitle()}
                             </div>}
                         </span>
-                        <span className={currentStep == 2 ? 'selected' : undefined} onClick={()=>{setCurrentStep(2)}}>
-                        {creatorItemFunding == null && '2) Funding Amounts'}
+                        <span className={currentStep == 2 ? 'selected' : undefined} onClick={() => { setCurrentStep(2) }}>
+                            {creatorItemFunding == null && '2) Funding Amounts'}
                             {creatorItemFunding != null && <div className="text-white">
                                 <Check fontSize="medium" className="pb-1 text-white" /> Funding Amounts
                             </div>}
                         </span>
-                        <span className={currentStep == 3 ? 'selected' : undefined} onClick={()=>{setCurrentStep(3)}}>
+                        <span className={currentStep == 3 ? 'selected' : undefined} onClick={() => { setCurrentStep(3) }}>
                             {drawnMapData == null && '3) Draw Boundries'}
                             {drawnMapData != null && <div className="text-white">
                                 <Check fontSize="medium" className="pb-1 text-white" /> Draw Boundries
                             </div>}
                         </span>
-                        <span className={currentStep == 4 ? 'selected' : undefined} onClick={()=>{setCurrentStep(4)}}>
+                        <span className={currentStep == 4 ? 'selected' : undefined} onClick={() => { setCurrentStep(4) }}>
                             {null == null && '4) Review and Finalize'}
                             {'d' == null && <div className="text-white">
                                 <Check fontSize="medium" className="pb-1 text-white" /> Review and Finalize
@@ -195,16 +203,16 @@ const Builder = () => {
                         </span>
                     </div>
                 </div>
-                <div className="" style={{width: '80%'}}>    
+                <div className="" style={{ width: '80%' }}>
                     {currentStep == 1 && <CampaignOptionsContract selectOption={selectCampaignType} replacementText={""} selectedId={campaignType} sampleData={campaignTypes} />}
-                    {currentStep == 2 && <Amounts typeId={fundingType} setCurrentStep={setCurrentStep} handleSetPricingData={handleSetPricingData} campaignImage={campaignImage} creatorItemFunding={creatorItemFunding} getSelectedCampaignTitle={getSelectedCampaignTitle()}/>}
-                    {currentStep == 3 && <PolygonMap setDrawnMapData={handleSetDrawnMapData}/>}
-                    {currentStep == 4 && 
-                        <CampaignPreview 
+                    {currentStep == 2 && <Amounts typeId={fundingType} setCurrentStep={setCurrentStep} handleSetPricingData={handleSetPricingData} setCampaignImage={setCampaignImage} campaignImage={campaignImageURL} creatorItemFunding={creatorItemFunding} getSelectedCampaignTitle={getSelectedCampaignTitle()} />}
+                    {currentStep == 3 && <PolygonMap setDrawnMapData={handleSetDrawnMapData} />}
+                    {currentStep == 4 &&
+                        <CampaignPreview
                             setCurrentStep={setCurrentStep}
                             drawnMapData={drawnMapData}
                             creatorItemFunding={creatorItemFunding}
-                            campaignImageURL={campaignImageURL}
+                            campaignImageURL={campaignImageURL? campaignImageURL.dataURL : ''}
                             contractName={getSelectedCampaignTitle()}
                             mode="BUILDER"
                         />}

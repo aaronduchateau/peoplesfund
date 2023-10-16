@@ -8,7 +8,7 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 
 const CampaignPreview = ({ setCurrentStep, drawnMapData, creatorItemFunding, campaignImageURL, contractName, mode }: { setCurrentStep: (id: number) => void, drawnMapData: any, creatorItemFunding: any, campaignImageURL: any, contractName: string, mode: string }) => {
-
+    const [imageHeight, setImageHeight] = React.useState<number>(200);
 
     const calculateAreaOfProperty = (features: any) => {
         let polygons = Object.values(features);
@@ -39,20 +39,23 @@ const CampaignPreview = ({ setCurrentStep, drawnMapData, creatorItemFunding, cam
         return carbonInTons;
     }
 
+    const onImgLoad = (image: any) =>{
+        setImageHeight(image.target.offsetHeight);
+    }
+
     const calculateCarbonOverYears = () => {
         let matches: any = contractName.match(/(\d+)/);
         return (calculateTonsOfCarbon(drawnMapData.features) * matches[0]);
     }
     const isLightbox: boolean = (mode === 'LIGHTBOX');
-    const formStyle = isLightbox ? { marginTop: '-20px', padding: '0px', margin: '0px', backgroundColor: "#040d13" } : {};
+    const formStyle = isLightbox ? { marginTop: '-20px', padding: '0px', margin: '0px' } : {};
     return (
         <div className="form-container" style={formStyle}>
             <Stack spacing={3}>
                 <h1 style={{ textAlign: 'left', display: 'inline', borderRadius: "16px", backgroundColor: "#040d13", padding: "16px", marginTop: '16px' }}><span style={{ borderRadius: "16px", backgroundColor: "#2ba95c", padding: "8px" }}>${creatorItemFunding.totalAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>&nbsp;&nbsp;&nbsp;<span>{creatorItemFunding.title}</span></h1>
-                <Divider sx={{ mt: 0, mb: 0 }} />
                 <div className="grid justify-items-center ">
                     <div className="grid grid-cols-2 gap-0">
-                        <div style={{ borderRadius: "16px", backgroundColor: "#040d13", padding: "16px" }}>
+                        <div style={{ borderTopLeftRadius: "16px", backgroundColor: "#040d13", padding: "16px" }}>
                             <h1 style={{ color: '#f8f7f7 ', textAlign: 'center' }}>Campaign Saves <span style={{ color: '#2ba95c' }}>{calculateTonsOfCarbon(drawnMapData.features)}</span> <span style={{ fontSize: '14px' }}>(Tons Carbon/yr)</span></h1>
                             <Divider sx={{ mt: 1, mb: 1 }} />
                             <span style={{ fontSize: '14px' }}>{drawnMapData.location?.result?.place_name}</span>
@@ -88,29 +91,29 @@ const CampaignPreview = ({ setCurrentStep, drawnMapData, creatorItemFunding, cam
                         </div>
 
 
-                        <img src={campaignImageURL} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+                        <img src={campaignImageURL} style={{ objectFit: 'cover', width: '100%', height: '100%', borderTopRightRadius: '16px' }} />
 
                     </div>
 
                 </div>
                 <div className="grid justify-items-center" style={{ marginTop: '0px' }}>
                     <div className="grid grid-cols-2 gap-0">
-                        <img src={drawnMapData.imageUrlEncoded} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
-                        <div>
-                            <div style={{ borderRadius: "16px", backgroundColor: "#040d13", padding: "16px" }}><br />
+                        <img src={drawnMapData.imageUrlEncoded} style={{ objectFit: 'cover', width: '100%', height: '100%' }} onLoad={onImgLoad} />
+                        <div style={{ height: '100%', minHeight: '100%'}}>
+                            <div style={{ backgroundColor: "#040d13", padding: "16px", height: imageHeight, minHeight: imageHeight}}><br />
                                 <div style={{ textAlign: 'center', minWidth: '100%', marginTop: '-20px' }}>
                                     <img src="https://picsum.photos/id/777/70/70" style={{ borderRadius: '50%', margin: '0 auto' }} />
                                     <Divider sx={{ mt: 2, mb: 0 }} />
                                 </div><br />
                                 <span style={{ fontSize: '14px' }}>"{creatorItemFunding.description}"</span><br /><br />
-                                <span style={{ fontSize: '14px', color: '#2ba95c', cursor: 'pointer', textDecoration: 'underline' }}>View User Profile</span><br /><br />
+                                <span style={{ fontSize: '14px', color: '#2ba95c', cursor: 'pointer', textDecoration: 'underline', }}>View User Profile</span><br /><br />
                             </div>
                         </div>
                     </div>
 
-                    <div className="grid justify-items-center" style={{ marginTop: '16px' }}>
-                        <div className="grid grid-cols-2 gap-4">
-                            <div style={{ borderRadius: "16px", backgroundColor: "#040d13", padding: "16px" }}>
+                    <div className="grid justify-items-center" style={{ marginTop: '0px' }}>
+                        <div className="grid grid-cols-2 gap-0">
+                            <div style={{ borderBottomLeftRadius: "16px", backgroundColor: "#040d13", padding: "16px" }}>
                                 <h1 style={{ color: '#f8f7f7 ', textAlign: 'center' }}>Some Details to Consider</h1>
                                 <Divider sx={{ mb: 1 }} />
                                 <h2 style={{ textAlign: 'left', fontSize: '14px', color: '#f8f7f7' }}>
@@ -118,7 +121,7 @@ const CampaignPreview = ({ setCurrentStep, drawnMapData, creatorItemFunding, cam
                                 </h2>
                             </div>
 
-                            <div style={{ borderRadius: "16px", backgroundColor: "#040d13", padding: "16px" }}>
+                            <div style={{ borderBottomRightRadius: "16px", backgroundColor: "#040d13", padding: "16px" }}>
                                 <h1 style={{ color: '#f8f7f7 ', textAlign: 'center' }}>Why these trees Matter</h1>
                                 <Divider sx={{ mb: 1 }} />
 

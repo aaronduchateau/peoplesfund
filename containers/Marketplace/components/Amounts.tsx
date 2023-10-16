@@ -14,12 +14,17 @@ import { MilestoneFunding, MilestoneDetail, CreatorItemFunding, ProgressiveFundi
 import { Validate, ValidationGroup, useValidation, AutoDisabler } from 'mui-validate';
 
 
-const Amounts = ({typeId, setCurrentStep, handleSetPricingData, campaignImage, creatorItemFunding} : {typeId: number, setCurrentStep: (id: number) => void, handleSetPricingData: (data: CreatorItemFunding) => void, campaignImage: (campaignImage: any) => void, creatorItemFunding: any} ) => {
+const Amounts = ({typeId, setCurrentStep, handleSetPricingData, setCampaignImage, campaignImage, creatorItemFunding} : {typeId: number, setCurrentStep: (id: number) => void, handleSetPricingData: (data: CreatorItemFunding) => void, setCampaignImage: (campaignImage: any) => void, campaignImage: any, creatorItemFunding: any} ) => {
       const dayJsObject = dayjs();
       const [dateValue, setDateValue] = React.useState<Dayjs | null>(
         dayJsObject,
       );
       const [editModeIndex, setEditModeIndex] = React.useState(null);
+
+      React.useEffect(() => {
+        const section = document.querySelector('#section-title-builder');
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, []);
 
       console.log('what in the jesus');
       console.log(creatorItemFunding);
@@ -177,7 +182,7 @@ const Amounts = ({typeId, setCurrentStep, handleSetPricingData, campaignImage, c
         {typeId == 1 && 
             <ValidationGroup initialValidation={'silent'}>
                 <Stack spacing={3}>
-                    <ImageUpload campaignImage={campaignImage}/>
+                    <ImageUpload setImage={setCampaignImage} image={campaignImage}/>
                     <br />
                     <h2 style={{textAlign: 'left', lineHeight: '0px'}}>Give your campaign a title</h2>    
                         <Validate name="creator-111" required>
@@ -278,7 +283,7 @@ const Amounts = ({typeId, setCurrentStep, handleSetPricingData, campaignImage, c
                         />
                     </LocalizationProvider>
                     <h2>Want to add a picture?</h2>    
-                    <ImageUpload campaignImage={campaignImage}/>
+                    <ImageUpload setCampaignImage={setCampaignImage}/>
                     <div className="grid justify-items-center ">
                         <div className="flex space-x-2">
                             <div className="text-center btn-green pt-2 pb-2 pl-5 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{setCurrentStep(2)}}>
@@ -328,7 +333,7 @@ const Amounts = ({typeId, setCurrentStep, handleSetPricingData, campaignImage, c
                     </div>
                     <hr />
                     <h2>Want to add a picture?</h2>    
-                    <ImageUpload campaignImage={campaignImage}/>
+                    <ImageUpload setCampaignImage={setCampaignImage}/>
                     <div className="grid justify-items-center ">
                         <div className="flex space-x-2">
                             <div className="text-center btn-green pt-2 pb-2 pl-5 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{setCurrentStep(4)}}>

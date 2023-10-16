@@ -21,45 +21,27 @@ const sampleData = {
         "campaigns": [
             {
                 "id": "1",
-                "title": "Creators & Startups",
-                "descText": "43% of small businesses surveyed believe that they have less than six months until a permanent shutdown is unavoidable. While mom and pop might not always be in focus, collectively small businesses are a powerful and influential piece of the economy. 99.9% of all businesses in the U.S. qualify as small businesses, collectively employing almost half of the nation’s workforce.",
-                "rewardText": "Have a cause that correlates to this category? choose this option to begin.",
+                "title": "1) Consider funding options",
+                "descText": "Let's be honest, Crowd funding campaigns aren't always successful. We hope to partner with non-profits and government organizations to create funding pools.",
+                "rewardText": "Our goal is to create seamless integration, where campaigns submitted to the platform will be automatic candidates for said funding pools.",
                 "fee": "5%",
                 "chain": "NEAR",
-                "photo": "./starburst.jpeg"
+                "photo": "./droneOverTrees.jpeg"
             },
             {
                 "id": "2",
-                "title": "Wellness Aid (Humans or Pets)",
-                "descText": "Recent polling indicates that traditional wellness campaigns in 2020 raised substantially less money in areas with more medical debt, higher uninsurance rates, and lower incomes. Whether your fundraising concerns extend to a loved one, a pet, or yourself, our goal is to use the power of Web3 to help you achieve your fundraising goals.",
-                "rewardText": "Have a cause that correlates to this category? choose this option to begin.",
+                "title": "2) Build Campaign",
+                "descText": "Our Campaign Builder lets you identify your funding goals, your property, and even define the boundries of your trees on a map. Using the feature you select, we can calculate the offset of your carbon footprint.",
+                "rewardText": "Simply finish building your campaign, upload supporting documents and you'll be up for review.",
                 "fee": "2.5%",
                 "chain": "NEAR & EVM",
-                "photo": "./starburst.jpeg"
+                "photo": "./campaign3map.png"
             },
             {
                 "id": "3",
-                "title": "Disaster Relief",
-                "descText": "In the two months following Hurricane Harvey, crowd funding funneled over $65 million to victims and charities. Millions more have been raised through hundreds of campaigns for people affected by Hurricane Maria. Campaigns of this type can focus on personal situations or broader goals, it's up to you!",
-                "rewardText": "Have a cause that correlates to this category? choose this option to begin.",
-                "fee": "2.5%",
-                "chain": "NEAR & EVM",
-                "photo": "./starburst.jpeg"
-            },
-            {
-                "id": "4",
-                "title": "Environmental Impact",
-                "descText": "Want to raise money to switch your house to Solar? Own a non-profit that cleans beaches or reduces trash going into our oceans? Want to fix that pesky pothole in 7th street that never seems to get fixed?",
-                "rewardText": "If you have a cause that correlates to this category? choose this option to begin.",
-                "fee": "2.5%",
-                "chain": "NEAR & EVM",
-                "photo": "./starburst.jpeg"
-            },
-            {
-                "id": "5",
-                "title": "Justice and Equality",
-                "descText": "We live in a world that is out of balance. For example: between February and April of 2020, Black business ownership declined more than 40%, the largest drop across any ethnic group. The report details the impact Covid-19 has had on Black-owned businesses. Black-owned businesses were less likely to handle mandated closures due to lack of access to financial relief.",
-                "rewardText": "Have a cause that correlates to this category? choose this option to begin.",
+                "title": "3) Await Review",
+                "descText": "It is immportant to us that funds allocated go to the right spot. After you submit your campaign we will use a variety of tools to verify that the campaign is legitimate.",
+                "rewardText": "If all goes to plan you will recieve a confirmation email that your campaign is active.",
                 "fee": "2.5%",
                 "chain": "NEAR & EVM",
                 "photo": "./starburst.jpeg"
@@ -87,7 +69,6 @@ const CampaignStrategies = () => {
             <div>
                 <div style={{ textAlign: 'center', width: '100%' }} className="my-6">
                     <img src="./works.png" style={{ width: '400px', marginLeft: 'auto', marginRight: 'auto' }} />
-                    <div className="text-white">1) choose a campaign type</div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-4 my-12">
                     {sampleData.data.campaigns.map(function (object, i) {
@@ -97,21 +78,6 @@ const CampaignStrategies = () => {
                                 <div className="p-4">
                                     <div className="text-xl text-white mt-1 font-bold">{object.title}</div>
                                     <div className="text-sm text-white mt-2">{object.descText}<br /><br />{object.rewardText}</div>
-                                </div>
-                            </div>
-                            <div className="flex items-center mt-3 justify-between p-4">
-                                <div className="text-center btn-green-border pt-2 pb-2 pl-2 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow">
-                                <div className="justify-between">
-                                    <SignalCellularAltIcon fontSize="medium" className="pb-1 text-green" />
-                                    <span className="text-green text-lg">
-                                    &nbsp;Examples</span>
-                                </div>
-                                </div>
-                                <div className="text-center btn-green pt-2 pb-2 pl-8 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow">
-                                <div className="justify-between">
-                                    <ArrowUpwardIcon fontSize="medium" className="pb-1 text-white" /><span className="text-white text-lg">
-                                    &nbsp;Begin</span>
-                                </div>
                                 </div>
                             </div>
                         </div>;

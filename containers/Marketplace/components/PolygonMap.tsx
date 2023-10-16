@@ -68,6 +68,7 @@ export default function PolygonMap(props: {setDrawnMapData: (mapParms: Object) =
 
   const onGeolocateResult = useCallback((e: any) => {
     setLocationResult(e);
+    console.log(e);
   }, []);
 
   
@@ -99,8 +100,8 @@ export default function PolygonMap(props: {setDrawnMapData: (mapParms: Object) =
     <div id="map">
       <Map
         initialViewState={{
-          longitude: -118.006004,
-          latitude: 34.316662,
+          longitude: -74.58389,
+          latitude: 40.909789,
           zoom: 16
         }}
         mapStyle="mapbox://styles/mapbox/satellite-v9"
@@ -108,7 +109,8 @@ export default function PolygonMap(props: {setDrawnMapData: (mapParms: Object) =
         preserveDrawingBuffer={true}
         ref={mapRef}
       > <GeocoderControl mapboxAccessToken={TOKEN} position="top-left" onResult={onGeolocateResult}/>
-        <DrawControl
+        
+        {Object.keys(locationResult).length > 0 && <><DrawControl
           position="top-left"
           displayControlsDefault={false}
           controls={{
@@ -122,7 +124,7 @@ export default function PolygonMap(props: {setDrawnMapData: (mapParms: Object) =
         />
         <GeolocateControl position="top-left" />
         <FullscreenControl position="top-left" />
-        <NavigationControl position="top-left" />
+        <NavigationControl position="top-left" /></>}
       </Map>
     </div>
     <br/><br/>

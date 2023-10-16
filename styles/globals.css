@@ -71,6 +71,20 @@ hr.style3 {
     position: relative;
   }
 
+  .hero-image-drone {
+    /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, .6)), url("../public/droneOverTrees.jpeg");
+  
+    /* Set a specific height */
+    height: 420px;
+  
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
   .hero-no-image {
     height: 145px;
   }

@@ -51,14 +51,11 @@ const Store: NextPage = () => {
       <div className="flex w-full">
         <FrontItems />
       </div>
+      <div className="flex w-full">
+        <HeroSection />
+      </div>
       <div className="flex w-full" style={{background: '#02a95c'}}>
         <CampaignStrategies  />
-      </div>
-      <div className="flex w-full" style={{background: '#017A42'}}>
-        <FundingStrategies />
-      </div>
-      <div className="flex w-full" style={{background: '#02a95c'}}>
-        <FundingExamples  />
       </div>
       <div className="flex w-full" style={{background: '#017A42'}}>
         <FinalStart  />
