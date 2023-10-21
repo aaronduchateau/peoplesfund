@@ -1,7 +1,7 @@
 import * as React from 'react';
 import area from '@turf/area';
 
-function ControlPanel(props) {
+function ControlPanel(props: any) {
   let polygonArea = 0;
   for (const polygon of props.polygons) {
     polygonArea += area(polygon);
