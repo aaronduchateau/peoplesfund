@@ -13,7 +13,7 @@ const CampaignPreview = ({ setCurrentStep, drawnMapData, creatorItemFunding, cam
     const [imageHeight, setImageHeight] = React.useState<number>(200);
 
     const calculateAreaOfProperty = (features: any) => {
-        let polygons = Object.values(features);
+        let polygons : any = Object.values(features);
         let polygonArea = area(polygons[0]);
 
         return Math.round(Math.round(polygonArea * 100) / 100);
@@ -24,7 +24,7 @@ const CampaignPreview = ({ setCurrentStep, drawnMapData, creatorItemFunding, cam
         polygons.shift();
         let polygonArea = 0;
         for (const polygon of polygons) {
-            polygonArea += area(polygon);
+            polygonArea += area(polygon as any);
         }
         return Math.round(Math.round(polygonArea * 100) / 100);
     }

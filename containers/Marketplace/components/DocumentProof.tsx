@@ -17,6 +17,7 @@ const DocumentProof = ({setCurrentStep, setPhotoIdImage, photoIdImage, mortgageI
     <div className="form-container">
             <ValidationGroup initialValidation={'silent'}>
                 <Stack spacing={3}>
+                    <h1>Identity Verification</h1>
                     <h2 style={{textAlign: 'left', lineHeight: '0px'}}>Upload Photo ID</h2>  
                     <ImageUpload setImage={setPhotoIdImage} image={photoIdImage}/>
                     <br />
