@@ -1,16 +1,15 @@
 import 'react-slideshow-image/dist/styles.css';
-import CampaignOptions from "../containers/Marketplace/components/CampaignOptions";
 import HeaderSecondaryContainer from "../containers/Marketplace/components/HeaderSecondaryContainer";
 import Amounts from "../containers/Marketplace/components/Amounts";
 import CampaignPreview from "../containers/Marketplace/components/CampaignPreview"
 import Footer from "../containers/Marketplace/components/Footer";
 import Check from '@mui/icons-material/Check';
 import { useState } from 'react';
-import { MilestoneFunding, MilestoneDetail, CreatorItemFunding, ProgressiveFunding } from '../utils/types';
 import PolygonMap from '../containers/Marketplace/components/PolygonMap';
 import CampaignOptionsContract from '../containers/Marketplace/components/CampaignOptionsContract';
 import React from 'react';
-//import { CreatorItemFunding } from '../containers/Marketplace/utils/types';
+import DocumentProof from '../containers/Marketplace/components/DocumentProof';
+import { CreatorItemFunding } from '../containers/Marketplace/utils/types';
 
 const campaignTypes = {
     "data": {
@@ -112,10 +111,13 @@ const fundingModes = {
 const Builder = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [campaignType, setCampaginType] = useState(null);
-    const [fundingType, setFundingType] = useState("1");
     const [drawnMapData, setDrawnMapData] = useState<Object | null>(null);
     const [creatorItemFunding, setCreatorItemFunding] = useState<CreatorItemFunding | null>(null);
     const [campaignImageURL, setCampaignImageURL] = useState<any>({});
+    const [photoIdImageURL, setPhotoIdImageURL] = useState<any>({});
+    const [mortgageImageURL, setMortgageImageURL] = useState<any>({});
+
+    
 
     React.useEffect(() => {
         setTimeout(() => {
@@ -129,11 +131,6 @@ const Builder = () => {
         setCurrentStep(2);
     }
 
-    const selectFundingType = (id: number) => {
-        setFundingType(id);
-        setCurrentStep(3);
-    }
-
     const handleSetDrawnMapData = (data: Object) => {
         setDrawnMapData(data);
         setCurrentStep(4);
@@ -144,16 +141,21 @@ const Builder = () => {
     }
 
     const getSelectedCampaignTitle = () => {
+        let campaignTypeUsed : any = campaignType | 1;
         let arr = campaignTypes.data.campaigns;
-        return arr.find(o => o.id === campaignType).title;
-    }
-    const getSelectedFundingTitle = () => {
-        let arr = fundingModes.data.campaigns;
-        return arr.find(o => o.id === fundingType).title;
+        return arr.find(o => o.id == campaignTypeUsed).title;
     }
 
     const setCampaignImage = (image: any) => {
         setCampaignImageURL(image[0]);
+    }
+
+    const setPhotoIdImage = (image: any) => {
+        setPhotoIdImageURL(image[0]);
+    }
+
+    const setMortgageImage = (image: any) => {
+        setMortgageImageURL(image[0]);
     }
     //console.log('drawnMapData');
     //console.log(JSON.stringify(drawnMapData));
@@ -172,7 +174,8 @@ const Builder = () => {
                 {currentStep == 1 && 'Step 1: Choose your contract length'}
                 {currentStep == 2 && 'Step 2: How much do you need?'}
                 {currentStep == 3 && 'Step 3: Draw the trees'}
-                {currentStep == 4 && 'Step 4: Review and finalize'}
+                {currentStep == 4 && 'Step 4: Review look & feel'}
+                {currentStep == 5 && 'Step 5: Upload Documents'}
             </div>
             <div className="flex">
                 <div style={{ width: '20%', margin: '0 auto', display: "flex", justifyContent: "center" }}>
@@ -183,29 +186,35 @@ const Builder = () => {
                                 <Check fontSize="medium" className="pb-1 text-white" /> {getSelectedCampaignTitle()}
                             </div>}
                         </span>
-                        <span className={currentStep == 2 ? 'selected' : undefined} onClick={() => { setCurrentStep(2) }}>
+                        <span className={currentStep == 2 ? 'selected' : undefined} onClick={() => { creatorItemFunding != null && setCurrentStep(2) }}>
                             {creatorItemFunding == null && '2) Funding Amounts'}
                             {creatorItemFunding != null && <div className="text-white">
                                 <Check fontSize="medium" className="pb-1 text-white" /> Funding Amounts
                             </div>}
                         </span>
-                        <span className={currentStep == 3 ? 'selected' : undefined} onClick={() => { setCurrentStep(3) }}>
+                        <span className={currentStep == 3 ? 'selected' : undefined} onClick={() => { drawnMapData != null && setCurrentStep(3) }}>
                             {drawnMapData == null && '3) Draw Boundries'}
                             {drawnMapData != null && <div className="text-white">
                                 <Check fontSize="medium" className="pb-1 text-white" /> Draw Boundries
                             </div>}
                         </span>
                         <span className={currentStep == 4 ? 'selected' : undefined} onClick={() => { setCurrentStep(4) }}>
-                            {null == null && '4) Review and Finalize'}
-                            {'d' == null && <div className="text-white">
-                                <Check fontSize="medium" className="pb-1 text-white" /> Review and Finalize
+                            {currentStep < 5 && '4) Review Content'}
+                            {currentStep == 5 &&  <div className="text-white">
+                                <Check fontSize="medium" className="pb-1 text-white" /> Review Content
+                            </div>}
+                        </span>
+                        <span className={currentStep == 5 ? 'selected' : undefined} onClick={() => { setCurrentStep(5) }}>
+                            {currentStep < 6 && '5) Upload Documents'}
+                            {currentStep == 6 &&  <div className="text-white">
+                                <Check fontSize="medium" className="pb-1 text-white" /> Upload Documents
                             </div>}
                         </span>
                     </div>
                 </div>
                 <div className="" style={{ width: '80%' }}>
                     {currentStep == 1 && <CampaignOptionsContract selectOption={selectCampaignType} replacementText={""} selectedId={campaignType} sampleData={campaignTypes} />}
-                    {currentStep == 2 && <Amounts typeId={fundingType} setCurrentStep={setCurrentStep} handleSetPricingData={handleSetPricingData} setCampaignImage={setCampaignImage} campaignImage={campaignImageURL} creatorItemFunding={creatorItemFunding} getSelectedCampaignTitle={getSelectedCampaignTitle()} />}
+                    {currentStep == 2 && <Amounts setCurrentStep={setCurrentStep} handleSetPricingData={handleSetPricingData} setCampaignImage={setCampaignImage} campaignImage={campaignImageURL} creatorItemFunding={creatorItemFunding} getSelectedCampaignTitle={getSelectedCampaignTitle()} />}
                     {currentStep == 3 && <PolygonMap setDrawnMapData={handleSetDrawnMapData} />}
                     {currentStep == 4 &&
                         <CampaignPreview
@@ -216,6 +225,9 @@ const Builder = () => {
                             contractName={getSelectedCampaignTitle()}
                             mode="BUILDER"
                         />}
+                    {currentStep == 5 && 
+                        <DocumentProof setCurrentStep={setCurrentStep} setPhotoIdImage={setPhotoIdImage} photoIdImage={photoIdImageURL} setMortgageImage={setMortgageImageURL} mortgageImage={mortgageImageURL}  />
+                    }
                 </div>
             </div>
             <Footer />

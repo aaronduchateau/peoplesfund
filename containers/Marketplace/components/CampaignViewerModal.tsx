@@ -67,6 +67,7 @@ export default function CampaignViewerModal(props: {isOpen: number | null, handl
             creatorItemFunding={props.activeCampaign.creatorItemFunding} 
             campaignImageURL={props.activeCampaign.campaignImageURL} 
             contractName={props.activeCampaign.contractName} 
+            raisedAmount={props.activeCampaign.raisedAmount}
             mode={'LIGHTBOX'}/> 
          
         </DialogContent>

@@ -28,7 +28,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export default function InstructionsMapOne(props: {isOpen: boolean, handleToggle: (isOpen: boolean) => void;}) {
+export default function InstructionsMapFinal(props: {isOpen: boolean, handleToggle: (isOpen: boolean) => void;}) {
   const [currentStep, setStep] = React.useState<number>(1);
   return (
     <div>
@@ -38,13 +38,13 @@ export default function InstructionsMapOne(props: {isOpen: boolean, handleToggle
         open={props.isOpen}
       >
         <DialogTitle sx={{ m: 0, p: 2, }} id="customized-dialog-title">
-          Draw Property Bounds
+          Outline Trees
         </DialogTitle>
         <DialogContent dividers sx={{borderBottom: '1px solid #081620', borderTop: '1px solid #081620'}} >
        
           {currentStep === 1 && <>
           <Typography gutterBottom>
-            Cool! Now use the polygon tool to draw a rough outline of the property.
+            Cool! Now use the polygon tool to outline your trees.
           </Typography>
           <img src="./instructions/outlineToolInstruction.png" style={{ marginLeft: 'auto', marginRight: 'auto' }} />
           </>
@@ -53,7 +53,7 @@ export default function InstructionsMapOne(props: {isOpen: boolean, handleToggle
           <Typography gutterBottom>
             When you are done, you should have something that looks like this!
           </Typography>
-          <img src="./instructions/tree1.png" style={{ marginLeft: 'auto', marginRight: 'auto' }} />
+          <img src="./instructions/tree2.png" style={{ marginLeft: 'auto', marginRight: 'auto' }} />
           </>}
         </DialogContent>
         <DialogActions>

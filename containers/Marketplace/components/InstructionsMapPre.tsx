@@ -28,7 +28,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export default function InstructionsMapOne(props: {isOpen: boolean, handleToggle: (isOpen: boolean) => void;}) {
+export default function InstructionsMapPre(props: {isOpen: boolean, handleToggle: (isOpen: boolean) => void;}) {
   const [currentStep, setStep] = React.useState<number>(1);
   return (
     <div>
@@ -38,31 +38,30 @@ export default function InstructionsMapOne(props: {isOpen: boolean, handleToggle
         open={props.isOpen}
       >
         <DialogTitle sx={{ m: 0, p: 2, }} id="customized-dialog-title">
-          Draw Property Bounds
+          Locate Your Property
         </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={()=>{props.handleToggle(false)}}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
         <DialogContent dividers sx={{borderBottom: '1px solid #081620', borderTop: '1px solid #081620'}} >
-       
-          {currentStep === 1 && <>
           <Typography gutterBottom>
-            Cool! Now use the polygon tool to draw a rough outline of the property.
+            Use the search feature to locate the property you own.
           </Typography>
-          <img src="./instructions/outlineToolInstruction.png" style={{ marginLeft: 'auto', marginRight: 'auto' }} />
-          </>
-          }
-          {currentStep === 2 &&  <>
-          <Typography gutterBottom>
-            When you are done, you should have something that looks like this!
-          </Typography>
-          <img src="./instructions/tree1.png" style={{ marginLeft: 'auto', marginRight: 'auto' }} />
-          </>}
+          <img src="./instructions/searchbar.png" style={{ marginLeft: 'auto', marginRight: 'auto' }} />
         </DialogContent>
         <DialogActions>
-        {currentStep === 1 && <Button autoFocus onClick={()=>{setStep(2)}}>
-            Ok, I get it
-          </Button>}
-          {currentStep === 2 &&<Button autoFocus onClick={()=>{props.handleToggle(false)}}>
-            Let's do it
-          </Button>}
+        <Button autoFocus onClick={()=>{props.handleToggle(false)}}>
+            Continue
+          </Button>
         </DialogActions>
       </BootstrapDialog>
     </div>
