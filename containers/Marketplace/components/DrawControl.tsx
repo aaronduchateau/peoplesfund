@@ -11,6 +11,7 @@ type DrawControlProps = ConstructorParameters<typeof MapboxDraw>[0] & {
   onDelete?: (evt: {features: object[]}) => void;
 };
 
+// @ts-ignore
 export default function DrawControl(props: DrawControlProps) {
   useControl<MapboxDraw>(
     () => new MapboxDraw(props),
