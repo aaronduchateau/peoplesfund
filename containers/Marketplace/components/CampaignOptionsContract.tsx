@@ -40,7 +40,9 @@ const CampaignOptionsContract = ({ selectOption, selectedId, sampleData, replace
         return `${value} Yrs`;
       }
       const handleChange = (event: Event, newValue: number | number[]) => {
-        setValue(newValue -1 as number);
+        if(typeof value === 'number'){
+            setValue(newValue as number -1 as number);
+        }
       };
 
     return (
