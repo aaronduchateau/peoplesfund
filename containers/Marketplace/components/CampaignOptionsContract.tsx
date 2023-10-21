@@ -33,7 +33,7 @@ const marks = [
 
 
 
-const CampaignOptionsContract = ({ selectOption, selectedId, sampleData, replacementText }: { selectOption: (id: number) => void, selectedId: number, sampleData: AnyKindOfDictionary, replacementText: string}, ) => {
+const CampaignOptionsContract = ({ selectOption, selectedId, sampleData, replacementText }: { selectOption: (id: string) => void, selectedId: number, sampleData: AnyKindOfDictionary, replacementText: string}, ) => {
     const [value, setValue] = useState<number>(selectedId? selectedId -1 : 0);
 
       const valuetext = (value: number)=> {
