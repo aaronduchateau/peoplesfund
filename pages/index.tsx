@@ -1,6 +1,4 @@
 import type { NextPage } from "next";
-import { SetStateAction, useState, useEffect } from "react";
-import { useRouter } from "next/router";
 
 import HeaderContainer from "../containers/Marketplace/components/HeaderContainer";
 import Footer from "../containers/Marketplace/components/Footer";

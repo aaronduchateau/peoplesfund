@@ -7,7 +7,7 @@ import Footer from "../containers/Marketplace/components/Footer";
 import { AutoDisabler, Validate, ValidationGroup } from 'mui-validate';
 import { Stack, TextField } from '@mui/material';
 import { CreatorItemFunding } from '../containers/Marketplace/utils/types';
-import React from 'react';
+import { useState } from 'react';
 
 
 
@@ -19,7 +19,7 @@ const contact = () => {
         });
       };
 
-    const [creatorValues, setCreatorValues] = React.useState<CreatorItemFunding>( {
+    const [creatorValues, setCreatorValues] = useState<CreatorItemFunding>( {
         title: '',
         description: '',
         category: null,
