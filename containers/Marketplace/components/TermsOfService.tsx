@@ -23,7 +23,6 @@ const TermsOfService = () => {
               <button
                 type="button"
                 className="inline-flex items-center justify-center p-2 rounded-md border-2 border-slate-900 hover:border-black text-gray-400 hover:text-primary focus:outline focus:text-gray-500 transition duration-150 ease-in-out"
-                onClick={() => closeModal()}
                 aria-label="Close"
               >
                 <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
