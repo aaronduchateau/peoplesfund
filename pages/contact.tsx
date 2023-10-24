@@ -11,7 +11,7 @@ import { useState } from 'react';
 
 
 
-const contact = () => {
+const Contact = () => {
     const handleCreatorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCreatorValues({
           ...creatorValues,
@@ -99,4 +99,4 @@ const contact = () => {
       )
 };
 
-export default contact;
+export default Contact;
