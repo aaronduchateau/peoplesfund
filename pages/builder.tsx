@@ -215,7 +215,7 @@ const Builder = () => {
                 <div className="" style={{ width: '80%' }}>
                     {currentStep == 1 && <CampaignOptionsContract selectOption={selectCampaignType} replacementText={""} selectedId={campaignType} sampleData={campaignTypes} />}
                     {currentStep == 2 && <Amounts setCurrentStep={setCurrentStep} handleSetPricingData={handleSetPricingData} setCampaignImage={setCampaignImage} campaignImage={campaignImageURL} creatorItemFunding={creatorItemFunding}  />}
-                    {currentStep == 3 && <PolygonMap setDrawnMapData={handleSetDrawnMapData} />}
+                    {currentStep == 3 && <PolygonMap setDrawnMapData={handleSetDrawnMapData} setCurrentStep={setCurrentStep} />}
                     {currentStep == 4 &&
                         <CampaignPreview
                             setCurrentStep={setCurrentStep}

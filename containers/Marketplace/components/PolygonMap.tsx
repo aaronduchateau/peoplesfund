@@ -11,7 +11,6 @@ import DrawControl from './DrawControl';
 import GeocoderControl from './GeocoderControl';
 import bbox from '@turf/bbox';
 import InstructionsMapOne from './InstructionsMapOne';
-import InstructionsMapTwo from './InstructionsMapTwo';
 import { ArrowBack, Check } from '@mui/icons-material';
 import InstructionsMapPre from './InstructionsMapPre';
 import InstructionsMapFinal from './InstructionsMapFinal';
@@ -19,10 +18,9 @@ import InstructionsMapFinal from './InstructionsMapFinal';
 
 const TOKEN = 'pk.eyJ1IjoiYWR1Y2hhdGUiLCJhIjoibWlwdzdCWSJ9.r3Fu1PMbaQ7qxSCA5GBwlA'; // Set your mapbox token here
 
-export default function PolygonMap(props: {setDrawnMapData: (mapParms: Object) => void;}) {
+export default function PolygonMap(props: {setDrawnMapData: (mapParms: Object) => void, setCurrentStep: (id: number) => void,}) {
   const [features, setFeatures] = useState<any>({});
   const [isHasShownModal, setIsHasShownModal] = useState<boolean>(false);
-  const [base64ImageExport, setBase64ImageExport] = useState<string>('');
   const [isInstructionsPreOpen, setIsInstructionsPreOpen] = useState<boolean>(true);
   const [isInstructinsOneOpen, setIsInstructionsOneOpen] = useState<boolean>(false);
   const [isInstructinsTwoOpen, setIsInstructinsTwoOpen] = useState<boolean>(false);
@@ -142,7 +140,7 @@ export default function PolygonMap(props: {setDrawnMapData: (mapParms: Object) =
     <InstructionsMapFinal isOpen={isInstructinsTwoOpen} handleToggle={handleToggleTwo}/>
     <div className="grid justify-items-center ">
                         <div className="flex space-x-2">
-                            <div className="text-center btn-green pt-2 pb-2 pl-5 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{setCurrentStep(4)}}>
+                            <div className="text-center btn-green pt-2 pb-2 pl-5 pr-1 cursor-pointer bg-slate-100 z-40 rounded-2xl flex btn-shadow" onClick={()=>{props.setCurrentStep(1)}}>
                                 <div className="justify-between">
                                     <ArrowBack fontSize="medium" className="pb-1 text-white" /><span className="text-white text-lg">
                                     &nbsp;Go Back</span>
