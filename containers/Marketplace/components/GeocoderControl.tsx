@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useState} from 'react';
 import {useControl, Marker, MarkerProps, ControlPosition} from 'react-map-gl';
 import MapboxGeocoder, {GeocoderOptions} from '@mapbox/mapbox-gl-geocoder';
-
+// @ts-ignore
 type GeocoderControlProps = Omit<GeocoderOptions, 'accessToken' | 'mapboxgl' | 'marker'> & {
   mapboxAccessToken: string;
   marker?: boolean | Omit<MarkerProps, 'longitude' | 'latitude'>;
@@ -18,7 +18,7 @@ type GeocoderControlProps = Omit<GeocoderOptions, 'accessToken' | 'mapboxgl' | '
 /* eslint-disable complexity,max-statements */
 export default function GeocoderControl(props: GeocoderControlProps) {
   const [marker, setMarker] = useState(null);
-
+ // @ts-ignore
   const geocoder = useControl<MapboxGeocoder>(
     () => {
       const ctrl = new MapboxGeocoder({
@@ -28,6 +28,7 @@ export default function GeocoderControl(props: GeocoderControlProps) {
       });
       ctrl.on('loading', props.onLoading);
       ctrl.on('results', props.onResults);
+      // @ts-ignore
       ctrl.on('result', evt => {
         props.onResult(evt);
 
@@ -36,6 +37,7 @@ export default function GeocoderControl(props: GeocoderControlProps) {
           result &&
           (result.center || (result.geometry?.type === 'Point' && result.geometry.coordinates));
         if (location && props.marker) {
+          // @ts-ignore
           setMarker(<Marker {...props.marker} longitude={location[0]} latitude={location[1]} />);
         } else {
           setMarker(null);
