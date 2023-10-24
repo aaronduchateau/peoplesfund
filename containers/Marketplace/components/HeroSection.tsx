@@ -23,7 +23,7 @@ const HeroSection = () => {
             &nbsp;1) Get paid to keep trees standing <br /> &nbsp;2) Offset Carbon emissions 
           </span> 
           <Divider sx={{mt: 1, mb: 1}}/>
-          <span style={{fontSize: '14px',}}>Current programs to offset carbon emissions have had issues ensuring that funds allocated produce the desired outcomes. Our take on tackling this problem uses a multi-tiered approach -></span>
+          <span style={{fontSize: '14px',}}>Current programs to offset carbon emissions have had issues ensuring that funds allocated produce the desired outcomes. Our take on tackling this problem uses a multi-tiered approach:</span>
           </div>
           <div className="" style={{textShadow: '3px 1px 19px black', letterSpacing: '.05rem'}}>
             <h1 style={{color: '#2ba95c'}}>Our Solution:</h1>  
