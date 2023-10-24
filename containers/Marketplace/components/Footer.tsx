@@ -7,7 +7,7 @@ const Footer = () => {
       </div>
       {/** login/logout with wallet */}
       <div className="flex items-center mr-4 text-white">
-        &#169; 2022 FundMeUP
+        &#169; 2023 KeepTree
       </div>
     </nav>
   )

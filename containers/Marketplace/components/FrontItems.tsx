@@ -16,6 +16,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
+// @ts-ignore
 const sampleData = {
   "data": {
     "campaigns": [

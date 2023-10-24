@@ -126,7 +126,7 @@ const Builder = () => {
         }, 300);
     }, [currentStep]);
 
-    const selectCampaignType = (id: number) => {
+    const selectCampaignType = (id: number | string) => {
         setCampaginType(id);
         setCurrentStep(2);
     }
@@ -198,7 +198,7 @@ const Builder = () => {
                                 <Check fontSize="medium" className="pb-1 text-white" /> Draw Boundries
                             </div>}
                         </span>
-                        <span className={currentStep == 4 ? 'selected' : undefined} onClick={() => { setCurrentStep(4) }}>
+                        <span className={currentStep == 4 ? 'selected' : undefined} onClick={() => {  }}>
                             {currentStep < 5 && '4) Review Content'}
                             {currentStep == 5 &&  <div className="text-white">
                                 <Check fontSize="medium" className="pb-1 text-white" /> Review Content
@@ -214,7 +214,7 @@ const Builder = () => {
                 </div>
                 <div className="" style={{ width: '80%' }}>
                     {currentStep == 1 && <CampaignOptionsContract selectOption={selectCampaignType} replacementText={""} selectedId={campaignType} sampleData={campaignTypes} />}
-                    {currentStep == 2 && <Amounts setCurrentStep={setCurrentStep} handleSetPricingData={handleSetPricingData} setCampaignImage={setCampaignImage} campaignImage={campaignImageURL} creatorItemFunding={creatorItemFunding} getSelectedCampaignTitle={getSelectedCampaignTitle()} />}
+                    {currentStep == 2 && <Amounts setCurrentStep={setCurrentStep} handleSetPricingData={handleSetPricingData} setCampaignImage={setCampaignImage} campaignImage={campaignImageURL} creatorItemFunding={creatorItemFunding}  />}
                     {currentStep == 3 && <PolygonMap setDrawnMapData={handleSetDrawnMapData} />}
                     {currentStep == 4 &&
                         <CampaignPreview
@@ -226,7 +226,7 @@ const Builder = () => {
                             mode="BUILDER"
                         />}
                     {currentStep == 5 && 
-                        <DocumentProof setCurrentStep={setCurrentStep} setPhotoIdImage={setPhotoIdImage} photoIdImage={photoIdImageURL} setMortgageImage={setMortgageImageURL} mortgageImage={mortgageImageURL}  />
+                        <DocumentProof setCurrentStep={setCurrentStep} setPhotoIdImage={setPhotoIdImage} photoIdImage={photoIdImageURL} setMortgageImage={setMortgageImage} mortgageImage={mortgageImageURL}  />
                     }
                 </div>
             </div>

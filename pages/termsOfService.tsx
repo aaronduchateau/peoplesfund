@@ -1,7 +1,3 @@
-import type { NextPage } from "next";
-import { SetStateAction, useState, useEffect } from "react";
-import { useRouter } from "next/router";
-
 import HeaderSecondaryContainer from "../containers/Marketplace/components/HeaderSecondaryContainer";
 import Footer from "../containers/Marketplace/components/Footer";
 
@@ -17,7 +13,9 @@ const termsOfService = () => {
                         <div className="">
                             <section id="toc" className="t-o-c grid justify-items-center bg-brt-green pd-10 content-center">
                                 <div className="max-w-screen-md pt-5 pb-5 text-white">
-                                    <h2 className="normal">Table Of Contents</h2>
+                                    <h2 className="normal">Table Of Contents</h2><br/>
+                                    <h2 className="normal" style={{padding: '10px', borderRadius: '8px', background: 'black'}}>Note: these terms are hypothetical and hope to aid in folks understanding the philiosphical directive of the project. The statments below were not drafted by a legal professional and if this product ever becomes realized they will need further attention. It is of the upmost importance to members of our team that the idea is polished so that any hypothetical funds are used for their intended purpose, and the product will not go live until the right team members and technical objecties have been met.</h2>
+                                    <br/>
                                     <ol className="list-simple ml4">
                                         <li className="type-16">
                                             <b><a href="#section1">1. Definitions of KeepTree.org Users and Members</a></b>
