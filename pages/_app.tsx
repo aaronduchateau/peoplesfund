@@ -52,7 +52,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         </Head>
           {loading ? (<Component {...pageProps} />) : <PageLoader />}
         </MenuProvider>
-        {showConversationModal && <WelcomeModal isOpen={showConversationModal} handleToggle={handleHideConversationModal} />}
+        {false && <WelcomeModal isOpen={showConversationModal} handleToggle={handleHideConversationModal} />}
     </ThemeProvider>
   );
 }
