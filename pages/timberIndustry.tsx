@@ -76,10 +76,10 @@ const timberIndustry = () => {
                             </section>
                             <section className="grid justify-items-center" id="section3">
                                 <div className="max-w-screen-md pt-5 pb-5 text-white">
-                                <h1 className="normal mb-5">| Let's work together & Get Paid, Keep Trees Standing</h1>
+                                <h1 className="normal mb-5">| Let&apos;s work together & Get Paid, Keep Trees Standing</h1>
                                     <div className="easy-to-read">
                                         <p className="text-white">
-                                        "The shape and solutions of the future rely totally on the collective effort of people working together. We are all an integral part of the web of life."<br/>
+                                        &apos;The shape and solutions of the future rely totally on the collective effort of people working together. We are all an integral part of the web of life.&apos;<br/>
                                         -Jacque Fresco
                                         </p>
                                     </div>
