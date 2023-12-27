@@ -11,6 +11,7 @@ const SlideMenu = () => {
             <Link href="/"><a>Home</a></Link>
             <Link href="/termsOfService"><a>Terms of Service</a></Link>
             <Link href="/builder"><a>Campaign Builder</a></Link>
+            <Link href="/pitch"><a>Pitch Deck</a></Link>
             <Link href="/timberIndustry"><a>Timber Industry Partners</a></Link>
             <Link href="/contact"><a>Contact</a></Link>
         </div>
